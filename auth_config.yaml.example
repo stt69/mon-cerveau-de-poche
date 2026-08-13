@@ -1,0 +1,16 @@
+# Copier vers auth_config.yaml :
+#   python gerer_utilisateurs.py init
+#   python gerer_utilisateurs.py autoriser email@ecole.ch
+#
+# Les étudiants définissent leur mot de passe à la première connexion.
+
+cookie:
+  expiry_days: 14
+  key: CHANGEZ_CETTE_CLE_SECRETE
+  name: cerveau_de_poche_auth
+
+credentials:
+  usernames: {}
+
+pre-authorized:
+  emails: []

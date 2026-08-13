@@ -15,6 +15,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import datetime
 import io
+from pathlib import Path
 
 from cerveau_poche import (
     CerveauPoche, Normaliseur, RegressionLineaire,
@@ -229,6 +230,93 @@ def _rerun():
         st.experimental_rerun()
 
 
+AUTH_CONFIG_PATH = Path(__file__).resolve().parent / "auth_config.yaml"
+
+
+def verifier_authentification():
+    """
+    Si auth_config.yaml est présent, impose une connexion.
+    - Liste d'emails autorisés gérée côté serveur
+    - Mot de passe choisi par l'étudiant à la première connexion
+    Sans ce fichier (ex. app locale packagée), l'accès reste ouvert.
+    """
+    if not AUTH_CONFIG_PATH.exists():
+        return None
+
+    import streamlit_authenticator as stauth
+    import yaml
+
+    with AUTH_CONFIG_PATH.open(encoding="utf-8") as f:
+        config = yaml.safe_load(f) or {}
+    emails_preautorises = [
+        e.strip().lower()
+        for e in (config.get("pre-authorized") or {}).get("emails") or []
+        if e
+    ]
+
+    authenticator = stauth.Authenticate(str(AUTH_CONFIG_PATH))
+
+    onglet_login, onglet_premier = st.tabs(
+        ["Se connecter", "Première connexion"]
+    )
+
+    with onglet_login:
+        try:
+            authenticator.login(
+                location="main",
+                fields={
+                    "Form name": "Connexion",
+                    "Username": "Email",
+                    "Password": "Mot de passe",
+                    "Login": "Se connecter",
+                },
+                captcha=False,
+                max_login_attempts=5,
+                key="Login",
+            )
+        except Exception as e:
+            st.error(f"Erreur de connexion : {e}")
+
+    with onglet_premier:
+        st.caption(
+            "Réservé aux emails autorisés par l'enseignant. "
+            "Choisissez votre mot de passe une seule fois."
+        )
+        try:
+            email_reg, username_reg, name_reg = authenticator.register_user(
+                location="main",
+                pre_authorized=emails_preautorises,
+                merge_username_email=True,
+                captcha=False,
+                password_hint=False,
+                fields={
+                    "Form name": "Créer mon accès",
+                    "Email": "Email",
+                    "Username": "Email",
+                    "Password": "Mot de passe",
+                    "Repeat password": "Confirmer le mot de passe",
+                    "Register": "Créer mon accès",
+                },
+                key="Register user",
+            )
+            if email_reg:
+                st.success(
+                    f"Compte créé pour {email_reg}. "
+                    "Passez à l'onglet « Se connecter »."
+                )
+        except Exception as e:
+            st.error(str(e))
+
+    status = st.session_state.get("authentication_status")
+    if status is True:
+        return authenticator
+    if status is False:
+        st.error("Email ou mot de passe incorrect.")
+        st.stop()
+
+    st.stop()
+
+
 def verifier_disclaimer():
     """Affiche un disclaimer obligatoire avant usage."""
     if "disclaimer_accepte" not in st.session_state:
@@ -281,6 +369,8 @@ def verifier_disclaimer():
 #  INTERFACE
 # ════════════════════════════════════════════════════════════════════
 
+authenticator = verifier_authentification()
+
 verifier_disclaimer()
 
 st.title("🧠 Mon Cerveau de Poche")
@@ -289,6 +379,12 @@ st.caption("Entraînez un réseau de neurones sur vos données Excel — sans co
 # ── Barre latérale ─────────────────────────────────────────
 
 with st.sidebar:
+    if authenticator is not None:
+        nom = st.session_state.get("name") or st.session_state.get("username", "")
+        st.caption(f"Connecté : {nom}")
+        authenticator.logout("Se déconnecter", location="sidebar", key="logout_btn")
+        st.divider()
+
     st.header("💾 Modèle sauvegardé")
     fichier_modele = st.file_uploader(
         "Charger un modèle (.zip)", type=["zip"], key="charger_modele")
