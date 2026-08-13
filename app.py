@@ -248,11 +248,12 @@ def verifier_authentification():
 
     with AUTH_CONFIG_PATH.open(encoding="utf-8") as f:
         config = yaml.safe_load(f) or {}
-    emails_preautorises = [
-        e.strip().lower()
-        for e in (config.get("pre-authorized") or {}).get("emails") or []
-        if e
-    ]
+    # streamlit-authenticator peut stocker pre-authorized comme
+    # {"emails": [...]} ou directement comme une liste.
+    pre = config.get("pre-authorized") or []
+    if isinstance(pre, dict):
+        pre = pre.get("emails") or []
+    emails_preautorises = [e.strip().lower() for e in pre if e]
 
     authenticator = stauth.Authenticate(str(AUTH_CONFIG_PATH))
 

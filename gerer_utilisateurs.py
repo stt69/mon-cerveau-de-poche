@@ -27,6 +27,24 @@ CONFIG = Path(__file__).resolve().parent / "auth_config.yaml"
 EXAMPLE = Path(__file__).resolve().parent / "auth_config.yaml.example"
 
 
+def _normaliser_preauthorized(data: dict) -> None:
+    """Uniformise pre-authorized en {"emails": [...]} (compat streamlit-authenticator)."""
+    pre = data.get("pre-authorized")
+    if pre is None:
+        data["pre-authorized"] = {"emails": []}
+    elif isinstance(pre, list):
+        data["pre-authorized"] = {
+            "emails": [e.strip().lower() for e in pre if e]
+        }
+    elif isinstance(pre, dict):
+        emails = pre.get("emails") or []
+        data["pre-authorized"] = {
+            "emails": [e.strip().lower() for e in emails if e]
+        }
+    else:
+        data["pre-authorized"] = {"emails": []}
+
+
 def charger() -> dict:
     if not CONFIG.exists():
         print(f"Fichier manquant : {CONFIG}")
@@ -35,17 +53,19 @@ def charger() -> dict:
     with CONFIG.open(encoding="utf-8") as f:
         data = yaml.safe_load(f) or {}
     data.setdefault("credentials", {}).setdefault("usernames", {})
-    data.setdefault("pre-authorized", {}).setdefault("emails", [])
+    _normaliser_preauthorized(data)
     return data
 
 
 def sauver(config: dict) -> None:
+    _normaliser_preauthorized(config)
     with CONFIG.open("w", encoding="utf-8") as f:
         yaml.dump(config, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
 
 
 def emails_autorises(config: dict) -> list:
-    return [e.strip().lower() for e in config["pre-authorized"]["emails"] if e]
+    _normaliser_preauthorized(config)
+    return list(config["pre-authorized"]["emails"])
 
 
 def cmd_init(_: argparse.Namespace) -> None:
