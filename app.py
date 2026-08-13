@@ -23,6 +23,7 @@ from cerveau_poche import (
     recommander_reseau, formater_formules_regression,
     recommandation_favorise_regression,
 )
+import auth_gestion as ag
 
 # ── Configuration ───────────────────────────────────────────
 st.set_page_config(
@@ -318,6 +319,94 @@ def verifier_authentification():
     st.stop()
 
 
+def afficher_administration():
+    """Panneau réservé à l'administrateur pour gérer les emails autorisés."""
+    st.subheader("Administration des accès")
+    st.caption(
+        "Autorisez des emails : les étudiants créeront leur mot de passe "
+        "à la première connexion."
+    )
+
+    try:
+        attente = ag.emails_attente()
+        actifs = ag.comptes_actifs()
+    except FileNotFoundError as e:
+        st.error(str(e))
+        return
+
+    c1, c2 = st.columns(2)
+    with c1:
+        st.markdown("**En attente** (première connexion)")
+        if attente:
+            for email in attente:
+                st.write(f"- {email}")
+        else:
+            st.write("_Aucun_")
+    with c2:
+        st.markdown("**Comptes activés**")
+        if actifs:
+            for email, label in actifs:
+                suffix = f" ({label})" if label else ""
+                st.write(f"- {email}{suffix}")
+        else:
+            st.write("_Aucun_")
+
+    st.divider()
+
+    st.markdown("**Autoriser un email**")
+    col_a, col_b = st.columns([3, 1])
+    with col_a:
+        nouvel_email = st.text_input(
+            "Email",
+            placeholder="etudiant@ecole.ch",
+            label_visibility="collapsed",
+            key="admin_nouvel_email",
+        )
+    with col_b:
+        if st.button("Autoriser", use_container_width=True, key="admin_btn_autoriser"):
+            if nouvel_email.strip():
+                st.success(ag.autoriser(nouvel_email))
+                _rerun()
+            else:
+                st.warning("Indiquez un email.")
+
+    st.markdown("**Autoriser plusieurs emails** (un par ligne)")
+    lot = st.text_area(
+        "Liste",
+        height=120,
+        placeholder="alice@ecole.ch\nbob@ecole.ch",
+        label_visibility="collapsed",
+        key="admin_lot_emails",
+    )
+    if st.button("Autoriser la liste", key="admin_btn_lot"):
+        messages = ag.autoriser_plusieurs(lot)
+        if not messages:
+            st.warning("Aucun email valide trouvé.")
+        else:
+            for m in messages:
+                st.write(m)
+            _rerun()
+
+    st.divider()
+
+    st.markdown("**Retirer un accès / réinitialiser un mot de passe**")
+    tous = sorted(set(attente) | {e for e, _ in actifs})
+    if not tous:
+        st.info("Aucun email à gérer pour le moment.")
+        return
+
+    cible = st.selectbox("Email concerné", tous, key="admin_email_cible")
+    b1, b2 = st.columns(2)
+    with b1:
+        if st.button("Réinitialiser mot de passe", use_container_width=True, key="admin_btn_reset"):
+            st.warning(ag.reinitialiser(cible))
+            _rerun()
+    with b2:
+        if st.button("Retirer complètement", use_container_width=True, key="admin_btn_retirer"):
+            st.warning(ag.retirer(cible))
+            _rerun()
+
+
 def verifier_disclaimer():
     """Affiche un disclaimer obligatoire avant usage."""
     if "disclaimer_accepte" not in st.session_state:
@@ -386,6 +475,25 @@ with st.sidebar:
         authenticator.logout("Se déconnecter", location="sidebar", key="logout_btn")
         st.divider()
 
+    admin = authenticator is not None and ag.est_admin(
+        st.session_state.get("username"),
+        st.session_state.get("email"),
+    )
+    if admin:
+        vue = st.radio(
+            "Vue",
+            ["Application", "Administration"],
+            key="vue_admin",
+        )
+        st.divider()
+    else:
+        vue = "Application"
+
+if vue == "Administration":
+    afficher_administration()
+    st.stop()
+
+with st.sidebar:
     st.header("💾 Modèle sauvegardé")
     fichier_modele = st.file_uploader(
         "Charger un modèle (.zip)", type=["zip"], key="charger_modele")
