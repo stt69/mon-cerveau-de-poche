@@ -641,7 +641,7 @@ with st.sidebar:
 st.subheader("📂 Données")
 source_donnees = st.radio(
     "Comment charger les données ?",
-    ["Exemple du livre", "Mon fichier Excel"],
+    ["Mon fichier Excel", "Exemple du livre"],
     horizontal=True,
     key="source_donnees",
 )
