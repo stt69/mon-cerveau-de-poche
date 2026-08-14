@@ -275,13 +275,19 @@ def categoriser_exemple(nom: str) -> str:
 
 
 def lister_exemples() -> dict[str, list[Path]]:
-    """Retourne {catégorie: [chemins .xlsx]} trié."""
+    """Retourne {catégorie: [chemins .xlsx]} trié (hors chapitres Partie I)."""
     dossier = dossier_exemples()
     if dossier is None:
         return {}
     groupes: dict[str, list[Path]] = {}
     for chemin in sorted(dossier.glob("*.xlsx")):
+        stem = chemin.stem.lower()
+        # Exclure les exercices Excel de la Partie I (chapitres 03–05)
+        if stem.startswith("chapitre"):
+            continue
         cat = categoriser_exemple(chemin.name)
+        if cat == "Chapitres (Partie I)":
+            continue
         groupes.setdefault(cat, []).append(chemin)
     return dict(sorted(groupes.items(), key=lambda x: x[0].lower()))
 
