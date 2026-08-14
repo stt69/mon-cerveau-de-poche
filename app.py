@@ -7,6 +7,8 @@ un réseau de neurones sur n'importe quel fichier Excel.
 Lancer avec :  streamlit run app.py
 """
 
+from __future__ import annotations
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -232,6 +234,56 @@ def _rerun():
 
 
 AUTH_CONFIG_PATH = Path(__file__).resolve().parent / "auth_config.yaml"
+
+CATEGORIES_EXEMPLES = {
+    "pratique": "Cas pratiques (commerce)",
+    "tourisme": "Tourisme",
+    "construction": "Construction",
+    "immobilier": "Immobilier",
+    "sante": "Santé",
+    "production": "Production",
+    "enseignement": "Enseignement",
+    "droit": "Droit",
+    "photo": "Photographie",
+    "biologie": "Biologie",
+    "forestier": "Forestier",
+    "agriculture": "Agriculture",
+    "info": "Informatique",
+    "transport": "Transport",
+    "fromagerie": "Fromagerie",
+}
+
+
+def dossier_exemples() -> Path | None:
+    """Dossier des Excel d'exemple (VPS: exemples/, local PocketBrain: ../excel/)."""
+    base = Path(__file__).resolve().parent
+    for candidat in (base / "exemples", base.parent / "excel"):
+        if candidat.is_dir() and any(candidat.glob("*.xlsx")):
+            return candidat
+    return None
+
+
+def categoriser_exemple(nom: str) -> str:
+    stem = Path(nom).stem
+    if stem.startswith("cas_"):
+        parties = stem.split("_")
+        if len(parties) >= 2:
+            return CATEGORIES_EXEMPLES.get(parties[1], parties[1].capitalize())
+    if stem.startswith("chapitre"):
+        return "Chapitres (Partie I)"
+    return "Autres exemples"
+
+
+def lister_exemples() -> dict[str, list[Path]]:
+    """Retourne {catégorie: [chemins .xlsx]} trié."""
+    dossier = dossier_exemples()
+    if dossier is None:
+        return {}
+    groupes: dict[str, list[Path]] = {}
+    for chemin in sorted(dossier.glob("*.xlsx")):
+        cat = categoriser_exemple(chemin.name)
+        groupes.setdefault(cat, []).append(chemin)
+    return dict(sorted(groupes.items(), key=lambda x: x[0].lower()))
 
 
 def verifier_authentification():
@@ -580,13 +632,57 @@ with st.sidebar:
 
 # ── Zone principale ────────────────────────────────────────
 
-fichier_excel = st.file_uploader(
-    "📂 Charger un fichier Excel", type=["xlsx"], key="fichier_excel")
+st.subheader("📂 Données")
+source_donnees = st.radio(
+    "Comment charger les données ?",
+    ["Exemple du livre", "Mon fichier Excel"],
+    horizontal=True,
+    key="source_donnees",
+)
 
-if fichier_excel:
-    df = pd.read_excel(fichier_excel)
-    st.session_state.df = df
+df = None
+id_source = None
 
+if source_donnees == "Exemple du livre":
+    groupes = lister_exemples()
+    if not groupes:
+        st.warning(
+            "Aucun fichier d'exemple trouvé sur le serveur. "
+            "Placez les `.xlsx` dans le dossier `exemples/` à côté de `app.py`, "
+            "ou utilisez « Mon fichier Excel »."
+        )
+    else:
+        categories = list(groupes.keys())
+        categorie = st.selectbox("Thème", categories, key="exemple_categorie")
+        fichiers = groupes[categorie]
+        labels = {p: p.stem.replace("_", " ") for p in fichiers}
+        choix = st.selectbox(
+            "Fichier exemple",
+            fichiers,
+            format_func=lambda p: labels[p],
+            key="exemple_fichier",
+        )
+        if choix is not None:
+            id_source = str(choix.resolve())
+            if st.session_state.get("donnees_id") != id_source:
+                st.session_state.df = pd.read_excel(choix)
+                st.session_state.donnees_id = id_source
+                st.session_state.pop("selection_cibles", None)
+            df = st.session_state.df
+            st.caption(f"Fichier : `{choix.name}`")
+else:
+    fichier_excel = st.file_uploader(
+        "Charger votre fichier Excel (.xlsx)", type=["xlsx"], key="fichier_excel")
+    if fichier_excel:
+        id_source = f"upload:{fichier_excel.name}:{fichier_excel.size}"
+        if st.session_state.get("donnees_id") != id_source:
+            st.session_state.df = pd.read_excel(fichier_excel)
+            st.session_state.donnees_id = id_source
+            st.session_state.pop("selection_cibles", None)
+        df = st.session_state.df
+        st.caption(f"Fichier : `{fichier_excel.name}`")
+
+if df is not None:
     st.subheader("Aperçu des données")
     st.dataframe(df.head(10), use_container_width=True)
     st.caption(f"{len(df)} lignes × {len(df.columns)} colonnes")
@@ -600,7 +696,7 @@ if fichier_excel:
     colonnes_cible = st.multiselect(
         "🎯 Colonnes à prédire (cibles)",
         options=list(df.columns),
-        key="selection_cibles",
+        key=f"selection_cibles_{st.session_state.get('donnees_id', 'none')}",
     )
     if not colonnes_cible:
         st.info("Sélectionnez au moins une colonne cible pour continuer.")
