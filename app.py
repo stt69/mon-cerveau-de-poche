@@ -27,6 +27,7 @@ from cerveau_poche import (
 )
 import auth_gestion as ag
 import explications as exp
+import aide_graphiques as ag_aide
 
 # ── Configuration ───────────────────────────────────────────
 st.set_page_config(
@@ -578,21 +579,59 @@ with st.sidebar:
     # ── Réglages ──
     st.header("⚙️ Réglages du réseau")
 
-    prereglage = st.selectbox("Préréglage", list(PREREGLAGES.keys()),
-                              index=1, key="prereglage")
+    def _reglage(label, cle, titre, contenu, widget_fn):
+        col_w, col_i = st.columns([8, 1])
+        with col_w:
+            return widget_fn()
+        with col_i:
+            st.markdown("<div style='margin-top:1.6rem'></div>", unsafe_allow_html=True)
+            ag_aide.afficher_puce_aide_reglage(cle, titre, contenu)
+
+    prereglage = _reglage(
+        "Préréglage", "prereglage", "Préréglage", ag_aide.AIDE_PREREGLAGE,
+        lambda: st.selectbox("Préréglage", list(PREREGLAGES.keys()), index=1, key="prereglage"),
+    )
     p = PREREGLAGES[prereglage]
 
-    couches = st.number_input("Couches cachées", 1, 10, p['couches'], key="couches")
-    neurones = st.number_input("Neurones par couche", 2, 128, p['neurones'], key="neurones")
-    activation = st.selectbox("Activation", ['relu', 'sigmoid', 'tanh'], key="activation")
-    optimiseur = st.selectbox("Optimiseur", ['adam', 'sgd'], key="optimiseur")
-    lr = st.select_slider("Taux d'apprentissage",
-                          options=[0.1, 0.05, 0.01, 0.005, 0.001, 0.0005, 0.0001],
-                          value=p['lr'], key="lr")
-    epoques = st.number_input("Époques", 10, 2000, p['epoques'], step=50, key="epoques")
-    taille_lot = st.number_input("Taille de lot", 8, 256, p['lot'], step=8, key="lot")
-    test_pct = st.slider("% données de test", 0.05, 0.50, 0.20, 0.05, key="test_pct")
-    graine = st.number_input("Graine aléatoire", value=42, key="graine")
+    couches = _reglage(
+        "Couches cachées", "couches", "Couches cachées", ag_aide.AIDE_COUCHES,
+        lambda: st.number_input("Couches cachées", 1, 10, p['couches'], key="couches"),
+    )
+    neurones = _reglage(
+        "Neurones par couche", "neurones", "Neurones par couche", ag_aide.AIDE_NEURONES,
+        lambda: st.number_input("Neurones par couche", 2, 128, p['neurones'], key="neurones"),
+    )
+    activation = _reglage(
+        "Activation", "activation", "Activation", ag_aide.AIDE_ACTIVATION,
+        lambda: st.selectbox("Activation", ['relu', 'sigmoid', 'tanh'], key="activation"),
+    )
+    optimiseur = _reglage(
+        "Optimiseur", "optimiseur", "Optimiseur", ag_aide.AIDE_OPTIMISEUR,
+        lambda: st.selectbox("Optimiseur", ['adam', 'sgd'], key="optimiseur"),
+    )
+    lr = _reglage(
+        "Taux d'apprentissage", "lr", "Taux d'apprentissage", ag_aide.AIDE_TAUX_APPRENTISSAGE,
+        lambda: st.select_slider(
+            "Taux d'apprentissage",
+            options=[0.1, 0.05, 0.01, 0.005, 0.001, 0.0005, 0.0001],
+            value=p['lr'], key="lr"),
+    )
+    epoques = _reglage(
+        "Époques", "epoques", "Époques", ag_aide.AIDE_EPOQUES,
+        lambda: st.number_input("Époques", 10, 2000, p['epoques'], step=50, key="epoques"),
+    )
+    taille_lot = _reglage(
+        "Taille de lot", "lot", "Taille de lot", ag_aide.AIDE_TAILLE_LOT,
+        lambda: st.number_input("Taille de lot", 8, 256, p['lot'], step=8, key="lot"),
+    )
+    test_pct = _reglage(
+        "% données de test", "test_pct", "% données de test", ag_aide.AIDE_DONNEES_TEST,
+        lambda: st.slider("% données de test", 0.05, 0.50, 0.20, 0.05, key="test_pct"),
+    )
+    graine = _reglage(
+        "Graine aléatoire", "graine", "Graine aléatoire", ag_aide.AIDE_GRAINE,
+        lambda: st.number_input("Graine aléatoire", value=42, key="graine"),
+    )
 
     st.divider()
 
@@ -642,7 +681,7 @@ with st.sidebar:
 st.subheader("📂 Données")
 source_donnees = st.radio(
     "Comment charger les données ?",
-    ["Mon fichier Excel", "Exemple du livre"],
+    ["Mon fichier Excel", "Exemples"],
     horizontal=True,
     key="source_donnees",
 )
@@ -650,7 +689,7 @@ source_donnees = st.radio(
 df = None
 id_source = None
 
-if source_donnees == "Exemple du livre":
+if source_donnees == "Exemples":
     groupes = lister_exemples()
     if not groupes:
         st.warning(
@@ -819,9 +858,12 @@ if df is not None:
         # Placeholders pour l'animation
         barre = st.progress(0, text="Entraînement...")
         col1, col2, col3 = st.columns(3)
-        ph_mae = col1.empty()
-        ph_pred = col2.empty()
-        ph_res = col3.empty()
+        with col1:
+            ph_mae = st.empty()
+        with col2:
+            ph_pred = st.empty()
+        with col3:
+            ph_res = st.empty()
 
         etat = {'historique': None}
 
@@ -885,6 +927,25 @@ if df is not None:
         # Rendu final (si pas d'animation, dessiner une fois)
         if not animer and etat['historique']:
             rappel_epoque(epoques - 1, etat['historique'])
+
+        # Puces d'aide sous chaque graphique
+        with col1:
+            ag_aide.afficher_puce_aide(
+                "mae", "Courbe d'erreur (MAE)", ag_aide.AIDE_COURBE_MAE)
+        with col2:
+            if mode_str == 'regression':
+                ag_aide.afficher_puce_aide(
+                    "pred", "Prédit vs Réel", ag_aide.AIDE_PREDIT_REEL)
+            else:
+                ag_aide.afficher_puce_aide(
+                    "confusion", "Matrice de confusion", ag_aide.AIDE_MATRICE_CONFUSION)
+        with col3:
+            if mode_str == 'regression':
+                ag_aide.afficher_puce_aide(
+                    "residus", "Résidus", ag_aide.AIDE_RESIDUS)
+            else:
+                ag_aide.afficher_puce_aide(
+                    "precision", "Précision", ag_aide.AIDE_PRECISION)
 
         # ── Métriques finales ──
         pred_final = reseau.predire(X_test)

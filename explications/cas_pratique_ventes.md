@@ -1,10 +1,10 @@
-## Chapitre 12 — Prévoir les ventes du mois prochain
+## Prévoir les ventes du mois prochain
 
 ---
 
 Premier cas pratique. Premier vrai test avec vos propres résultats.
 
-Ce chapitre est le modèle que suivront tous les chapitres de la Partie III. Une fois cette méthode maîtrisée, vous pourrez l'appliquer à n'importe quel domaine.
+Ce cas est le modèle que suivront tous les chapitres de la Partie III. Une fois cette méthode maîtrisée, vous pourrez l'appliquer à n'importe quel domaine.
 
 ---
 
@@ -56,7 +56,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

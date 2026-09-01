@@ -1,10 +1,10 @@
-## Chapitre 21 — Prévoir la durée des travaux
+## Prévoir la durée des travaux
 
 ---
 
 « Combien de temps pour ce chantier ? » Le client veut une date, vous voulez une estimation crédible. La durée dépend du type d'ouvrage, de la surface, de l'effectif, de la saison et des intempéries — des combinaisons que votre historique de chantiers terminés capture déjà.
 
-Ce chapitre entraîne le réseau sur vos chantiers passés pour prédire la **durée en jours**. Vous obtenez une base chiffrée pour le planning et les engagements clients.
+Ce cas entraîne le réseau sur vos chantiers passés pour prédire la **durée en jours**. Vous obtenez une base chiffrée pour le planning et les engagements clients.
 
 ---
 
@@ -55,7 +55,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

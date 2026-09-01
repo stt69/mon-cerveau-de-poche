@@ -1,10 +1,10 @@
-## Chapitre 14 — Estimer un prix ou un coût
+## Estimer un prix ou un coût
 
 ---
 
 Fixer le bon prix d'un meuble sur mesure, c'est jongler entre matériaux, dimensions et finition. Votre historique de devis contient déjà la logique implicite de votre atelier.
 
-Ce chapitre estime le **prix de vente** à partir des caractéristiques du meuble.
+Ce cas estime le **prix de vente** à partir des caractéristiques du meuble.
 
 ---
 
@@ -56,7 +56,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

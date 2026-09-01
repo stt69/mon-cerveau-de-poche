@@ -1,10 +1,10 @@
-## Chapitre 60 — Estimer le temps de développement
+## Estimer le temps de développement
 
 ---
 
 « Combien de jours pour livrer cette fonctionnalité ? » Les estimations IT sont notoriously optimistes. Un modèle entraîné sur vos projets passés donne une base plus réaliste.
 
-Ce chapitre prédit la **durée de développement en jours**.
+Ce cas prédit la **durée de développement en jours**.
 
 ---
 
@@ -56,7 +56,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

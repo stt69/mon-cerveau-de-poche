@@ -1,10 +1,10 @@
-## Chapitre 47 — Détecter les projets rentables vs déficitaires
+## Détecter les projets rentables vs déficitaires
 
 ---
 
 Tous les projets photo ne se valent pas : certains rapportent, d'autres coûtent plus qu'ils ne rapportent. Repérer les profils rentables aide à choisir les missions.
 
-Ce chapitre classifie les projets selon leur **rentabilité** (classification).
+Ce cas classifie les projets selon leur **rentabilité** (classification).
 
 ---
 

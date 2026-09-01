@@ -1,10 +1,10 @@
-## Chapitre 56 — Estimer le rendement d'une parcelle agricole
+## Estimer le rendement d'une parcelle agricole
 
 ---
 
 Quel rendement attendre de cette parcelle cette année ? Culture, sol, pluie, engrais et irrigation interagissent — l'historique de l'exploitation contient la réponse empirique.
 
-Ce chapitre estime le **rendement en t/ha**.
+Ce cas estime le **rendement en t/ha**.
 
 ---
 
@@ -56,7 +56,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

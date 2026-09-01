@@ -1,10 +1,10 @@
-## Chapitre 40 — Estimer les honoraires d'un dossier
+## Estimer les honoraires d'un dossier
 
 ---
 
 « Combien ça va coûter ? » Pour un dossier juridique, la réponse dépend du type d'affaire, de la complexité, de l'enjeu financier et de l'urgence.
 
-Ce chapitre estime les **honoraires** à partir de l'historique de votre cabinet.
+Ce cas estime les **honoraires** à partir de l'historique de votre cabinet.
 
 ---
 
@@ -55,7 +55,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

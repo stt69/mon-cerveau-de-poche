@@ -1,10 +1,10 @@
-## Chapitre 55 — Détecter les zones à risque sanitaire forestier
+## Détecter les zones à risque sanitaire forestier
 
 ---
 
 Scolytes, sécheresse, densité excessive : certaines parcelles méritent une surveillance renforcée. Le réseau apprend à classer le risque sanitaire à partir de l'historique forestier.
 
-Ce chapitre entraîne un modèle de **classification** sur le **risque sanitaire** des peuplements.
+Ce cas entraîne un modèle de **classification** sur le **risque sanitaire** des peuplements.
 
 ---
 

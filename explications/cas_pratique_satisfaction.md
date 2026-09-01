@@ -1,4 +1,4 @@
-## Chapitre 15 — Détecter ce qui ne va pas (classification)
+## Détecter ce qui ne va pas (classification)
 
 ---
 
@@ -64,7 +64,6 @@ Entrez les caractéristiques d'un nouveau cas :
 | Service_client | 3 |
 
 Le réseau renvoie une **classe prédite** pour **Satisfaction**. Utilisez ce signal pour prioriser vos actions — toujours avec validation humaine.
-
 
 ### Lire les résultats d'une classification
 

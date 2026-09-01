@@ -1,10 +1,10 @@
-## Chapitre 70 — Anticiper les besoins en présure, ferments et sel
+## Anticiper les besoins en présure, ferments et sel
 
 ---
 
 Présure, ferments, sel, toiles, morge : les besoins d'une fromagerie dépendent du volume de lait et du mix de fabrications prévu.
 
-Ce chapitre prédit **cinq fournitures en parallèle** (multi-sorties) pour le mois à venir.
+Ce cas prédit **cinq fournitures en parallèle** (multi-sorties) pour le mois à venir.
 
 ---
 

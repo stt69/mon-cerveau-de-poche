@@ -1,10 +1,10 @@
-## Chapitre 22 — Anticiper les besoins en matériaux
+## Anticiper les besoins en matériaux
 
 ---
 
 Avant de commander béton, acier et bois, il faut estimer les quantités. Le métré détaillé reste indispensable, mais un premier chiffrage rapide à partir du type d'ouvrage et de la surface fait gagner du temps.
 
-Ce chapitre utilise un modèle **multi-sorties** : le réseau prédit plusieurs matériaux en une seule passe, à partir de l'historique de vos chantiers.
+Ce cas utilise un modèle **multi-sorties** : le réseau prédit plusieurs matériaux en une seule passe, à partir de l'historique de vos chantiers.
 
 ---
 

@@ -1,10 +1,10 @@
-## Chapitre 32 — Estimer le temps de production
+## Estimer le temps de production
 
 ---
 
 Combien d'heures pour cette commande ? Quel délai annoncer au client ? Le chef d'atelier a une intuition, mais elle varie selon la charge, le type de produit et la complexité.
 
-Ce chapitre apprend à estimer le **temps de production en heures** à partir de l'historique réel de l'atelier.
+Ce cas apprend à estimer le **temps de production en heures** à partir de l'historique réel de l'atelier.
 
 ---
 
@@ -55,7 +55,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

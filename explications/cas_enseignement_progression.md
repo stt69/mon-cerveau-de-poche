@@ -1,10 +1,10 @@
-## Chapitre 36 — Estimer la progression d'un élève
+## Estimer la progression d'un élève
 
 ---
 
 Quelle note peut-on raisonnablement attendre au prochain trimestre ? L'assiduité, le travail personnel et la participation jouent un rôle — mais dans quelles proportions pour votre établissement ?
 
-Ce chapitre estime la **note finale** à partir d'indicateurs disponibles en cours de trimestre. Usage bienveillant et anonymisé uniquement — pour accompagner, pas pour étiqueter.
+Ce cas estime la **note finale** à partir d'indicateurs disponibles en cours de trimestre. Usage bienveillant et anonymisé uniquement — pour accompagner, pas pour étiqueter.
 
 ---
 
@@ -55,7 +55,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

@@ -1,10 +1,10 @@
-## Chapitre 62 — Anticiper les ressources humaines IT
+## Anticiper les ressources humaines IT
 
 ---
 
 Combien de développeurs, d'ops et de support mobiliser ce mois-ci ? Projets actifs, tickets et déploiements prévus orientent la charge.
 
-Ce chapitre prédit **plusieurs postes en heures** (multi-sorties) pour la planification RH IT.
+Ce cas prédit **plusieurs postes en heures** (multi-sorties) pour la planification RH IT.
 
 ---
 

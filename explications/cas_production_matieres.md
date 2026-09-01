@@ -1,10 +1,10 @@
-## Chapitre 34 — Anticiper les besoins en matières premières
+## Anticiper les besoins en matières premières
 
 ---
 
 Commander les matières premières au bon moment et en bonne quantité limite les immobilisations et les ruptures. La consommation dépend du plan de production et du mix produits.
 
-Ce chapitre prédit **plusieurs matières en une fois** (multi-sorties) à partir de la production prévue.
+Ce cas prédit **plusieurs matières en une fois** (multi-sorties) à partir de la production prévue.
 
 ---
 

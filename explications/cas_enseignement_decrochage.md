@@ -1,10 +1,10 @@
-## Chapitre 39 — Détecter le risque de décrochage
+## Détecter le risque de décrochage
 
 ---
 
 Un élève qui décroche laisse souvent des signaux avant la rupture : absentéisme, notes en baisse, retards. Les repérer tôt permet d'intervenir.
 
-Ce chapitre entraîne un modèle de **classification** pour estimer le risque de décrochage. Données anonymisées ; l'objectif est l'accompagnement, jamais la stigmatisation.
+Ce cas entraîne un modèle de **classification** pour estimer le risque de décrochage. Données anonymisées ; l'objectif est l'accompagnement, jamais la stigmatisation.
 
 ---
 

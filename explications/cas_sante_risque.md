@@ -1,10 +1,10 @@
-## Chapitre 31 — Détecter les patients à risque
+## Détecter les patients à risque
 
 ---
 
 Repérer tôt les patients à risque permet d'adapter le suivi et la prévention. L'âge, l'IMC, la tension, la glycémie et les habitudes de vie interagissent de façon complexe.
 
-Ce chapitre entraîne un modèle de **classification** sur des dossiers anonymisés. Il ne remplace pas le jugement clinique : il aide à prioriser le suivi.
+Ce cas entraîne un modèle de **classification** sur des dossiers anonymisés. Il ne remplace pas le jugement clinique : il aide à prioriser le suivi.
 
 ---
 

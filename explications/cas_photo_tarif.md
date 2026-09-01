@@ -1,10 +1,10 @@
-## Chapitre 44 — Estimer le prix d'une prestation photo
+## Estimer le prix d'une prestation photo
 
 ---
 
 Fixer un tarif photo juste — ni trop bas (on se sous-vend), ni trop haut (on perd le client) — requiert de tenir compte du type de prestation, de la durée, du retouche et du déplacement.
 
-Ce chapitre estime le **tarif** à partir de l'historique de vos prestations.
+Ce cas estime le **tarif** à partir de l'historique de vos prestations.
 
 ---
 
@@ -56,7 +56,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

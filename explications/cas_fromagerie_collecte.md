@@ -1,10 +1,10 @@
-## Chapitre 69 — Prévoir les volumes de lait collectés
+## Prévoir les volumes de lait collectés
 
 ---
 
 La collecte de lait varie avec la saison, l'alpage, la météo et le nombre de producteurs. Prévoir le volume hebdomadaire aide à dimensionner cuves et transport.
 
-Ce chapitre prédit le **volume de lait collecté (L)**.
+Ce cas prédit le **volume de lait collecté (L)**.
 
 ---
 
@@ -59,7 +59,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

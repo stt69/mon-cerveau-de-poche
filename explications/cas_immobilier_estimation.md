@@ -1,10 +1,10 @@
-## Chapitre 24 — Estimer la valeur d'un bien immobilier
+## Estimer la valeur d'un bien immobilier
 
 ---
 
 « Combien vaut ce bien ? » C'est la question que se posent agents immobiliers, courtiers et investisseurs plusieurs fois par semaine. On sait intuitivement que la surface, l'emplacement et l'état général font varier le prix — mais de combien exactement ? Et quelle prime pour un balcon, un parking, ou un bon diagnostic énergétique ?
 
-Ce chapitre transforme votre historique de ventes en outil d'estimation. Entraîné sur les transactions passées de votre secteur, le réseau chiffre ce que votre intuition saisit à peu près : le prix au m² par quartier, l'impact d'un état « à rénover », la décote d'un appartement éloigné du centre. Il ne remplace pas une visite sur place — il vous donne une base chiffrée pour cadrer un mandat, vérifier une offre ou repérer une opportunité.
+Ce cas transforme votre historique de ventes en outil d'estimation. Entraîné sur les transactions passées de votre secteur, le réseau chiffre ce que votre intuition saisit à peu près : le prix au m² par quartier, l'impact d'un état « à rénover », la décote d'un appartement éloigné du centre. Il ne remplace pas une visite sur place — il vous donne une base chiffrée pour cadrer un mandat, vérifier une offre ou repérer une opportunité.
 
 ---
 

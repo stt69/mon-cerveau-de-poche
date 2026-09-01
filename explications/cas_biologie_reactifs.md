@@ -1,10 +1,10 @@
-## Chapitre 50 — Anticiper les besoins en réactifs
+## Anticiper les besoins en réactifs
 
 ---
 
 Commander les réactifs au bon moment évite les ruptures en pleine série d'analyses. Le volume d'analyses prévues et le type dominant déterminent la consommation.
 
-Ce chapitre prédit **plusieurs réactifs et consommables** (multi-sorties) pour le mois à venir.
+Ce cas prédit **plusieurs réactifs et consommables** (multi-sorties) pour le mois à venir.
 
 ---
 

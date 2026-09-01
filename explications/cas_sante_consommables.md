@@ -1,10 +1,10 @@
-## Chapitre 30 — Anticiper les besoins en consommables
+## Anticiper les besoins en consommables
 
 ---
 
 Rupture de gants ou surstock de médicaments : les deux coûtent cher. Anticiper la consommation de consommables à partir de l'activité prévue évite les commandes de dernière minute.
 
-Ce chapitre prédit **plusieurs catégories de consommables en même temps** (multi-sorties) à partir du volume d'activité du cabinet ou de l'établissement.
+Ce cas prédit **plusieurs catégories de consommables en même temps** (multi-sorties) à partir du volume d'activité du cabinet ou de l'établissement.
 
 ---
 

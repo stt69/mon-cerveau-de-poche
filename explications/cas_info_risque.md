@@ -1,10 +1,10 @@
-## Chapitre 63 — Détecter les projets à risque de dérapage
+## Détecter les projets à risque de dérapage
 
 ---
 
 Scope qui dérive, client non technique, techno inconnue : certains projets IT dérapent systématiquement. Les repérer tôt permet d'allouer un chef de projet expérimenté ou de revoir le périmètre.
 
-Ce chapitre classifie le **risque de dérapage** (classification).
+Ce cas classifie le **risque de dérapage** (classification).
 
 ---
 

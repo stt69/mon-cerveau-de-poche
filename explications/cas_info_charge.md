@@ -1,10 +1,10 @@
-## Chapitre 61 — Prévoir la charge serveur et infrastructure
+## Prévoir la charge serveur et infrastructure
 
 ---
 
 Une mise à jour, une campagne marketing ou un pic d'utilisateurs peuvent saturer les serveurs. Anticiper la charge CPU permet de dimensionner l'infrastructure.
 
-Ce chapitre prédit la **charge CPU (%)** à partir des métriques journalières.
+Ce cas prédit la **charge CPU (%)** à partir des métriques journalières.
 
 ---
 
@@ -56,7 +56,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

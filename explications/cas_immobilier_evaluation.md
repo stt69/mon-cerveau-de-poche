@@ -1,10 +1,10 @@
-## Chapitre 27 — Détecter les biens sous-évalués ou surévalués
+## Détecter les biens sous-évalués ou surévalués
 
 ---
 
 Chaque semaine, des dizaines de nouvelles annonces apparaissent. Repérer les bonnes affaires ou les biens surévalués permet de prioriser les visites et de conseiller efficacement vendeurs et acheteurs.
 
-Ce chapitre utilise un réseau de **classification** entraîné sur des annonces déjà jugées. Vous obtenez un filtre objectif pour scanner les nouvelles annonces.
+Ce cas utilise un réseau de **classification** entraîné sur des annonces déjà jugées. Vous obtenez un filtre objectif pour scanner les nouvelles annonces.
 
 ---
 

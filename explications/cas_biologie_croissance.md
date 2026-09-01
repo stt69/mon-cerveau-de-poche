@@ -1,10 +1,10 @@
-## Chapitre 48 — Estimer la croissance d'une culture biologique
+## Estimer la croissance d'une culture biologique
 
 ---
 
 En laboratoire, la croissance d'une culture dépend du milieu, de la température, du pH et du substrat. Prédire la densité optique finale aide à planifier les expériences.
 
-Ce chapitre estime la **densité optique** à partir des paramètres de culture.
+Ce cas estime la **densité optique** à partir des paramètres de culture.
 
 ---
 
@@ -55,7 +55,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

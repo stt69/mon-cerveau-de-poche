@@ -1,10 +1,10 @@
-## Chapitre 29 — Prévoir la fréquentation d'un cabinet
+## Prévoir la fréquentation d'un cabinet
 
 ---
 
 Anticiper le nombre de consultations permet d'ajuster les plannings, les remplacements et les créneaux d'urgence. La fréquentation d'un cabinet varie selon le jour, la saison, la météo et les épidémies.
 
-Ce chapitre transforme l'historique de fréquentation en outil de prévision pour les semaines à venir.
+Ce cas transforme l'historique de fréquentation en outil de prévision pour les semaines à venir.
 
 ---
 
@@ -56,7 +56,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

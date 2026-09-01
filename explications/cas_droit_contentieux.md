@@ -1,10 +1,10 @@
-## Chapitre 43 — Détecter les dossiers à risque de contentieux
+## Détecter les dossiers à risque de contentieux
 
 ---
 
 Certains dossiers dégénèrent en contentieux, d'autres se règlent à l'amiable. Le montant en jeu, les délais de réponse et l'historique de litiges sont des signaux.
 
-Ce chapitre entraîne un modèle de **classification** pour repérer les dossiers à risque de contentieux.
+Ce cas entraîne un modèle de **classification** pour repérer les dossiers à risque de contentieux.
 
 ---
 

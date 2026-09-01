@@ -1,10 +1,10 @@
-## Chapitre 71 — Détecter les lots à risque de défaut d'affinage
+## Détecter les lots à risque de défaut d'affinage
 
 ---
 
 Une meule qui part en défaut à l'affinage, c'est des semaines de travail perdues. Les paramètres de fabrication et de cave laissent parfois présager le résultat final.
 
-Ce chapitre classifie la **qualité d'affinage** (classification) pour prioriser les contrôles.
+Ce cas classifie la **qualité d'affinage** (classification) pour prioriser les contrôles.
 
 ---
 

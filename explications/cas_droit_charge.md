@@ -1,10 +1,10 @@
-## Chapitre 42 — Anticiper la charge du cabinet
+## Anticiper la charge du cabinet
 
 ---
 
 Répartir la charge entre contentieux, conseil et fiscal en fin de mois, c'est un puzzle récurrent. Le nombre de dossiers ouverts et les audiences prévues donnent des indices.
 
-Ce chapitre prédit **plusieurs pôles d'activité en heures** (multi-sorties) pour anticiper la charge du cabinet.
+Ce cas prédit **plusieurs pôles d'activité en heures** (multi-sorties) pour anticiper la charge du cabinet.
 
 ---
 

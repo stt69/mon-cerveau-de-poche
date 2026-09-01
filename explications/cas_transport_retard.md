@@ -1,10 +1,10 @@
-## Chapitre 67 — Détecter les trajets à risque de retard
+## Détecter les trajets à risque de retard
 
 ---
 
 Un trajet en heure de pointe, par mauvais temps, avec travaux sur l'itinéraire : le risque de retard monte. Le repérer à l'avance permet de prévenir le client ou de choisir un autre créneau.
 
-Ce chapitre classifie les trajets selon le **risque de retard** (classification).
+Ce cas classifie les trajets selon le **risque de retard** (classification).
 
 ---
 

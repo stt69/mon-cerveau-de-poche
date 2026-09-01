@@ -1,10 +1,10 @@
-## Chapitre 28 — Estimer la durée d'un traitement
+## Estimer la durée d'un traitement
 
 ---
 
 « Combien de temps pour ce traitement ? » Les patients posent la question ; les équipes médicales aussi pour organiser les lits et les rendez-vous. La durée varie selon l'âge, la pathologie, la sévérité et le protocole.
 
-Ce chapitre entraîne le réseau sur des dossiers anonymisés pour estimer la **durée de traitement en jours**. Les données doivent rester anonymisées et conformes à la réglementation.
+Ce cas entraîne le réseau sur des dossiers anonymisés pour estimer la **durée de traitement en jours**. Les données doivent rester anonymisées et conformes à la réglementation.
 
 ---
 
@@ -56,7 +56,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

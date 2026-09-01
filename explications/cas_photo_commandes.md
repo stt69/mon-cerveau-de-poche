@@ -1,10 +1,10 @@
-## Chapitre 45 — Prévoir les commandes par saison
+## Prévoir les commandes par saison
 
 ---
 
 La saison des mariages, le budget pub et la réputation en ligne font varier le carnet de commandes d'un photographe. Anticiper permet d'ajuster la communication et la disponibilité.
 
-Ce chapitre prédit le **nombre de commandes** mois par mois.
+Ce cas prédit le **nombre de commandes** mois par mois.
 
 ---
 
@@ -55,7 +55,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

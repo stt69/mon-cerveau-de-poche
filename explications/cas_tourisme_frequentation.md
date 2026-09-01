@@ -1,10 +1,10 @@
-## Chapitre 18 — Anticiper la fréquentation d'un site touristique
+## Anticiper la fréquentation d'un site touristique
 
 ---
 
 Un musée, un site touristique : la fréquentation varie selon le jour, la météo et les vacances. Anticiper les entrées et les recettes boutique aide à dimensionner l'accueil.
 
-Ce chapitre prédit **plusieurs flux en parallèle** (entrées, boutique, cafétéria) — multi-sorties.
+Ce cas prédit **plusieurs flux en parallèle** (entrées, boutique, cafétéria) — multi-sorties.
 
 ---
 

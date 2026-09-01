@@ -1,10 +1,10 @@
-## Chapitre 23 — Détecter les risques de dépassement
+## Détecter les risques de dépassement
 
 ---
 
 Certains chantiers dépassent le budget, d'autres non. Repérer les signaux avant qu'il ne soit trop tard permet d'ajuster l'effectif, de renégocier ou d'alerter le client.
 
-Ce chapitre entraîne un modèle de **classification** sur l'historique de vos dépassements. Le réseau classe chaque nouveau chantier selon son risque de dépassement.
+Ce cas entraîne un modèle de **classification** sur l'historique de vos dépassements. Le réseau classe chaque nouveau chantier selon son risque de dépassement.
 
 ---
 

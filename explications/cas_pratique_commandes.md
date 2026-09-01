@@ -1,4 +1,4 @@
-## Chapitre 13 — Anticiper les commandes fournisseurs
+## Anticiper les commandes fournisseurs
 
 ---
 

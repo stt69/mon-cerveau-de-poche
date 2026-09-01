@@ -1,10 +1,10 @@
-## Chapitre 54 — Anticiper les besoins en matériel et personnel forestier
+## Anticiper les besoins en matériel et personnel forestier
 
 ---
 
 Machines, carburant, main-d'œuvre, rotations : préparer un chantier forestier, c'est chiffrer plusieurs postes en même temps.
 
-Ce chapitre prédit **quatre postes de ressources** (multi-sorties) à partir du volume et du terrain.
+Ce cas prédit **quatre postes de ressources** (multi-sorties) à partir du volume et du terrain.
 
 ---
 

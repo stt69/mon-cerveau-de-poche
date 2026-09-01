@@ -1,10 +1,10 @@
-## Chapitre 49 — Prévoir les résultats d'une analyse
+## Prévoir les résultats d'une analyse
 
 ---
 
 Avant même de lancer l'analyse, certains paramètres laissent présager le résultat. Le réseau apprend ces corrélations sur l'historique du laboratoire.
 
-Ce chapitre prédit la **concentration résultat** à partir du protocole et de l'échantillon.
+Ce cas prédit la **concentration résultat** à partir du protocole et de l'échantillon.
 
 ---
 
@@ -55,7 +55,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

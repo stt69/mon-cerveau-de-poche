@@ -2,301 +2,301 @@
   "cas_pratique_ventes.xlsx": {
     "fichier": "explications/cas_pratique_ventes.md",
     "chapitre": 12,
-    "titre": "Chapitre 12 — Prévoir les ventes du mois prochain"
+    "titre": "Prévoir les ventes du mois prochain"
   },
   "cas_pratique_commandes.xlsx": {
     "fichier": "explications/cas_pratique_commandes.md",
     "chapitre": 13,
-    "titre": "Chapitre 13 — Anticiper les commandes fournisseurs"
+    "titre": "Anticiper les commandes fournisseurs"
   },
   "cas_pratique_prix.xlsx": {
     "fichier": "explications/cas_pratique_prix.md",
     "chapitre": 14,
-    "titre": "Chapitre 14 — Estimer un prix ou un coût"
+    "titre": "Estimer un prix ou un coût"
   },
   "cas_pratique_satisfaction.xlsx": {
     "fichier": "explications/cas_pratique_satisfaction.md",
     "chapitre": 15,
-    "titre": "Chapitre 15 — Détecter ce qui ne va pas (classification)"
+    "titre": "Détecter ce qui ne va pas (classification)"
   },
   "cas_tourisme_occupation.xlsx": {
     "fichier": "explications/cas_tourisme_occupation.md",
     "chapitre": 16,
-    "titre": "Chapitre 16 — Prévoir le taux d'occupation d'un hébergement"
+    "titre": "Prévoir le taux d'occupation d'un hébergement"
   },
   "cas_tourisme_prix_location.xlsx": {
     "fichier": "explications/cas_tourisme_prix_location.md",
     "chapitre": 17,
-    "titre": "Chapitre 17 — Fixer le bon prix pour une location saisonnière"
+    "titre": "Fixer le bon prix pour une location saisonnière"
   },
   "cas_tourisme_frequentation.xlsx": {
     "fichier": "explications/cas_tourisme_frequentation.md",
     "chapitre": 18,
-    "titre": "Chapitre 18 — Anticiper la fréquentation d'un site touristique"
+    "titre": "Anticiper la fréquentation d'un site touristique"
   },
   "cas_tourisme_personnel.xlsx": {
     "fichier": "explications/cas_tourisme_personnel.md",
     "chapitre": 19,
-    "titre": "Chapitre 19 — Prévoir les besoins en personnel saisonnier"
+    "titre": "Prévoir les besoins en personnel saisonnier"
   },
   "cas_construction_cout.xlsx": {
     "fichier": "explications/cas_construction_cout.md",
     "chapitre": 20,
-    "titre": "Chapitre 20 — Estimer le coût d'un chantier"
+    "titre": "Estimer le coût d'un chantier"
   },
   "cas_construction_duree.xlsx": {
     "fichier": "explications/cas_construction_duree.md",
     "chapitre": 21,
-    "titre": "Chapitre 21 — Prévoir la durée des travaux"
+    "titre": "Prévoir la durée des travaux"
   },
   "cas_construction_materiaux.xlsx": {
     "fichier": "explications/cas_construction_materiaux.md",
     "chapitre": 22,
-    "titre": "Chapitre 22 — Anticiper les besoins en matériaux"
+    "titre": "Anticiper les besoins en matériaux"
   },
   "cas_construction_depassement.xlsx": {
     "fichier": "explications/cas_construction_depassement.md",
     "chapitre": 23,
-    "titre": "Chapitre 23 — Détecter les risques de dépassement"
+    "titre": "Détecter les risques de dépassement"
   },
   "cas_immobilier_estimation.xlsx": {
     "fichier": "explications/cas_immobilier_estimation.md",
     "chapitre": 24,
-    "titre": "Chapitre 24 — Estimer la valeur d'un bien immobilier"
+    "titre": "Estimer la valeur d'un bien immobilier"
   },
   "cas_immobilier_delai.xlsx": {
     "fichier": "explications/cas_immobilier_delai.md",
     "chapitre": 25,
-    "titre": "Chapitre 25 — Prévoir le délai de vente"
+    "titre": "Prévoir le délai de vente"
   },
   "cas_immobilier_pret.xlsx": {
     "fichier": "explications/cas_immobilier_pret.md",
     "chapitre": 26,
-    "titre": "Chapitre 26 — Anticiper le montant d'un prêt accordé"
+    "titre": "Anticiper le montant d'un prêt accordé"
   },
   "cas_immobilier_evaluation.xlsx": {
     "fichier": "explications/cas_immobilier_evaluation.md",
     "chapitre": 27,
-    "titre": "Chapitre 27 — Détecter les biens sous-évalués ou surévalués"
+    "titre": "Détecter les biens sous-évalués ou surévalués"
   },
   "cas_sante_duree_traitement.xlsx": {
     "fichier": "explications/cas_sante_duree_traitement.md",
     "chapitre": 28,
-    "titre": "Chapitre 28 — Estimer la durée d'un traitement"
+    "titre": "Estimer la durée d'un traitement"
   },
   "cas_sante_frequentation.xlsx": {
     "fichier": "explications/cas_sante_frequentation.md",
     "chapitre": 29,
-    "titre": "Chapitre 29 — Prévoir la fréquentation d'un cabinet"
+    "titre": "Prévoir la fréquentation d'un cabinet"
   },
   "cas_sante_consommables.xlsx": {
     "fichier": "explications/cas_sante_consommables.md",
     "chapitre": 30,
-    "titre": "Chapitre 30 — Anticiper les besoins en consommables"
+    "titre": "Anticiper les besoins en consommables"
   },
   "cas_sante_risque.xlsx": {
     "fichier": "explications/cas_sante_risque.md",
     "chapitre": 31,
-    "titre": "Chapitre 31 — Détecter les patients à risque"
+    "titre": "Détecter les patients à risque"
   },
   "cas_production_temps.xlsx": {
     "fichier": "explications/cas_production_temps.md",
     "chapitre": 32,
-    "titre": "Chapitre 32 — Estimer le temps de production"
+    "titre": "Estimer le temps de production"
   },
   "cas_production_demande.xlsx": {
     "fichier": "explications/cas_production_demande.md",
     "chapitre": 33,
-    "titre": "Chapitre 33 — Prévoir la demande pour planifier la production"
+    "titre": "Prévoir la demande pour planifier la production"
   },
   "cas_production_matieres.xlsx": {
     "fichier": "explications/cas_production_matieres.md",
     "chapitre": 34,
-    "titre": "Chapitre 34 — Anticiper les besoins en matières premières"
+    "titre": "Anticiper les besoins en matières premières"
   },
   "cas_production_qualite.xlsx": {
     "fichier": "explications/cas_production_qualite.md",
     "chapitre": 35,
-    "titre": "Chapitre 35 — Détecter les défauts qualité"
+    "titre": "Détecter les défauts qualité"
   },
   "cas_enseignement_progression.xlsx": {
     "fichier": "explications/cas_enseignement_progression.md",
     "chapitre": 36,
-    "titre": "Chapitre 36 — Estimer la progression d'un élève"
+    "titre": "Estimer la progression d'un élève"
   },
   "cas_enseignement_reussite.xlsx": {
     "fichier": "explications/cas_enseignement_reussite.md",
     "chapitre": 37,
-    "titre": "Chapitre 37 — Prévoir le taux de réussite d'une formation"
+    "titre": "Prévoir le taux de réussite d'une formation"
   },
   "cas_enseignement_ressources.xlsx": {
     "fichier": "explications/cas_enseignement_ressources.md",
     "chapitre": 38,
-    "titre": "Chapitre 38 — Anticiper les ressources pédagogiques"
+    "titre": "Anticiper les ressources pédagogiques"
   },
   "cas_enseignement_decrochage.xlsx": {
     "fichier": "explications/cas_enseignement_decrochage.md",
     "chapitre": 39,
-    "titre": "Chapitre 39 — Détecter le risque de décrochage"
+    "titre": "Détecter le risque de décrochage"
   },
   "cas_droit_honoraires.xlsx": {
     "fichier": "explications/cas_droit_honoraires.md",
     "chapitre": 40,
-    "titre": "Chapitre 40 — Estimer les honoraires d'un dossier"
+    "titre": "Estimer les honoraires d'un dossier"
   },
   "cas_droit_duree.xlsx": {
     "fichier": "explications/cas_droit_duree.md",
     "chapitre": 41,
-    "titre": "Chapitre 41 — Prévoir la durée d'une procédure"
+    "titre": "Prévoir la durée d'une procédure"
   },
   "cas_droit_charge.xlsx": {
     "fichier": "explications/cas_droit_charge.md",
     "chapitre": 42,
-    "titre": "Chapitre 42 — Anticiper la charge du cabinet"
+    "titre": "Anticiper la charge du cabinet"
   },
   "cas_droit_contentieux.xlsx": {
     "fichier": "explications/cas_droit_contentieux.md",
     "chapitre": 43,
-    "titre": "Chapitre 43 — Détecter les dossiers à risque de contentieux"
+    "titre": "Détecter les dossiers à risque de contentieux"
   },
   "cas_photo_tarif.xlsx": {
     "fichier": "explications/cas_photo_tarif.md",
     "chapitre": 44,
-    "titre": "Chapitre 44 — Estimer le prix d'une prestation photo"
+    "titre": "Estimer le prix d'une prestation photo"
   },
   "cas_photo_commandes.xlsx": {
     "fichier": "explications/cas_photo_commandes.md",
     "chapitre": 45,
-    "titre": "Chapitre 45 — Prévoir les commandes par saison"
+    "titre": "Prévoir les commandes par saison"
   },
   "cas_photo_postprod.xlsx": {
     "fichier": "explications/cas_photo_postprod.md",
     "chapitre": 46,
-    "titre": "Chapitre 46 — Anticiper le temps de post-production"
+    "titre": "Anticiper le temps de post-production"
   },
   "cas_photo_rentabilite.xlsx": {
     "fichier": "explications/cas_photo_rentabilite.md",
     "chapitre": 47,
-    "titre": "Chapitre 47 — Détecter les projets rentables vs déficitaires"
+    "titre": "Détecter les projets rentables vs déficitaires"
   },
   "cas_biologie_croissance.xlsx": {
     "fichier": "explications/cas_biologie_croissance.md",
     "chapitre": 48,
-    "titre": "Chapitre 48 — Estimer la croissance d'une culture biologique"
+    "titre": "Estimer la croissance d'une culture biologique"
   },
   "cas_biologie_analyse.xlsx": {
     "fichier": "explications/cas_biologie_analyse.md",
     "chapitre": 49,
-    "titre": "Chapitre 49 — Prévoir les résultats d'une analyse"
+    "titre": "Prévoir les résultats d'une analyse"
   },
   "cas_biologie_reactifs.xlsx": {
     "fichier": "explications/cas_biologie_reactifs.md",
     "chapitre": 50,
-    "titre": "Chapitre 50 — Anticiper les besoins en réactifs"
+    "titre": "Anticiper les besoins en réactifs"
   },
   "cas_biologie_anomalies.xlsx": {
     "fichier": "explications/cas_biologie_anomalies.md",
     "chapitre": 51,
-    "titre": "Chapitre 51 — Détecter les échantillons anormaux"
+    "titre": "Détecter les échantillons anormaux"
   },
   "cas_forestier_volume.xlsx": {
     "fichier": "explications/cas_forestier_volume.md",
     "chapitre": 52,
-    "titre": "Chapitre 52 — Estimer le volume de bois d'une parcelle"
+    "titre": "Estimer le volume de bois d'une parcelle"
   },
   "cas_forestier_duree.xlsx": {
     "fichier": "explications/cas_forestier_duree.md",
     "chapitre": 53,
-    "titre": "Chapitre 53 — Prévoir le temps d'exploitation d'un chantier forestier"
+    "titre": "Prévoir le temps d'exploitation d'un chantier forestier"
   },
   "cas_forestier_ressources.xlsx": {
     "fichier": "explications/cas_forestier_ressources.md",
     "chapitre": 54,
-    "titre": "Chapitre 54 — Anticiper les besoins en matériel et personnel forestier"
+    "titre": "Anticiper les besoins en matériel et personnel forestier"
   },
   "cas_forestier_sanitaire.xlsx": {
     "fichier": "explications/cas_forestier_sanitaire.md",
     "chapitre": 55,
-    "titre": "Chapitre 55 — Détecter les zones à risque sanitaire forestier"
+    "titre": "Détecter les zones à risque sanitaire forestier"
   },
   "cas_agriculture_rendement.xlsx": {
     "fichier": "explications/cas_agriculture_rendement.md",
     "chapitre": 56,
-    "titre": "Chapitre 56 — Estimer le rendement d'une parcelle agricole"
+    "titre": "Estimer le rendement d'une parcelle agricole"
   },
   "cas_agriculture_recolte.xlsx": {
     "fichier": "explications/cas_agriculture_recolte.md",
     "chapitre": 57,
-    "titre": "Chapitre 57 — Prévoir les dates de récolte"
+    "titre": "Prévoir les dates de récolte"
   },
   "cas_agriculture_intrants.xlsx": {
     "fichier": "explications/cas_agriculture_intrants.md",
     "chapitre": 58,
-    "titre": "Chapitre 58 — Anticiper les besoins en intrants"
+    "titre": "Anticiper les besoins en intrants"
   },
   "cas_agriculture_maladie.xlsx": {
     "fichier": "explications/cas_agriculture_maladie.md",
     "chapitre": 59,
-    "titre": "Chapitre 59 — Détecter les parcelles à risque de maladie"
+    "titre": "Détecter les parcelles à risque de maladie"
   },
   "cas_info_temps.xlsx": {
     "fichier": "explications/cas_info_temps.md",
     "chapitre": 60,
-    "titre": "Chapitre 60 — Estimer le temps de développement"
+    "titre": "Estimer le temps de développement"
   },
   "cas_info_charge.xlsx": {
     "fichier": "explications/cas_info_charge.md",
     "chapitre": 61,
-    "titre": "Chapitre 61 — Prévoir la charge serveur et infrastructure"
+    "titre": "Prévoir la charge serveur et infrastructure"
   },
   "cas_info_rh.xlsx": {
     "fichier": "explications/cas_info_rh.md",
     "chapitre": 62,
-    "titre": "Chapitre 62 — Anticiper les ressources humaines IT"
+    "titre": "Anticiper les ressources humaines IT"
   },
   "cas_info_risque.xlsx": {
     "fichier": "explications/cas_info_risque.md",
     "chapitre": 63,
-    "titre": "Chapitre 63 — Détecter les projets à risque de dérapage"
+    "titre": "Détecter les projets à risque de dérapage"
   },
   "cas_transport_cout.xlsx": {
     "fichier": "explications/cas_transport_cout.md",
     "chapitre": 64,
-    "titre": "Chapitre 64 — Estimer le coût d'un trajet"
+    "titre": "Estimer le coût d'un trajet"
   },
   "cas_transport_volume.xlsx": {
     "fichier": "explications/cas_transport_volume.md",
     "chapitre": 65,
-    "titre": "Chapitre 65 — Prévoir le volume de courses et livraisons"
+    "titre": "Prévoir le volume de courses et livraisons"
   },
   "cas_transport_maintenance.xlsx": {
     "fichier": "explications/cas_transport_maintenance.md",
     "chapitre": 66,
-    "titre": "Chapitre 66 — Anticiper les coûts de maintenance de la flotte"
+    "titre": "Anticiper les coûts de maintenance de la flotte"
   },
   "cas_transport_retard.xlsx": {
     "fichier": "explications/cas_transport_retard.md",
     "chapitre": 67,
-    "titre": "Chapitre 67 — Détecter les trajets à risque de retard"
+    "titre": "Détecter les trajets à risque de retard"
   },
   "cas_fromagerie_rendement.xlsx": {
     "fichier": "explications/cas_fromagerie_rendement.md",
     "chapitre": 68,
-    "titre": "Chapitre 68 — Estimer le rendement fromager"
+    "titre": "Estimer le rendement fromager"
   },
   "cas_fromagerie_collecte.xlsx": {
     "fichier": "explications/cas_fromagerie_collecte.md",
     "chapitre": 69,
-    "titre": "Chapitre 69 — Prévoir les volumes de lait collectés"
+    "titre": "Prévoir les volumes de lait collectés"
   },
   "cas_fromagerie_fournitures.xlsx": {
     "fichier": "explications/cas_fromagerie_fournitures.md",
     "chapitre": 70,
-    "titre": "Chapitre 70 — Anticiper les besoins en présure, ferments et sel"
+    "titre": "Anticiper les besoins en présure, ferments et sel"
   },
   "cas_fromagerie_affinage.xlsx": {
     "fichier": "explications/cas_fromagerie_affinage.md",
     "chapitre": 71,
-    "titre": "Chapitre 71 — Détecter les lots à risque de défaut d'affinage"
+    "titre": "Détecter les lots à risque de défaut d'affinage"
   }
 }

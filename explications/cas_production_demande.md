@@ -1,10 +1,10 @@
-## Chapitre 33 — Prévoir la demande pour planifier la production
+## Prévoir la demande pour planifier la production
 
 ---
 
 Produire ni trop (stock mort) ni trop peu (rupture) : anticiper la demande est le cœur de la planification industrielle. Saison, marketing et conjoncture influencent les commandes reçues.
 
-Ce chapitre prédit le volume de **commandes reçues** pour les semaines à venir, afin d'ajuster production et approvisionnements.
+Ce cas prédit le volume de **commandes reçues** pour les semaines à venir, afin d'ajuster production et approvisionnements.
 
 ---
 
@@ -55,7 +55,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

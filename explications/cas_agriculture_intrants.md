@@ -1,10 +1,10 @@
-## Chapitre 58 — Anticiper les besoins en intrants
+## Anticiper les besoins en intrants
 
 ---
 
 Semences, engrais, eau, phytos : anticiper les intrants évite les commandes urgentes et les gaspillages.
 
-Ce chapitre prédit **plusieurs intrants en parallèle** (multi-sorties) selon la culture et la surface.
+Ce cas prédit **plusieurs intrants en parallèle** (multi-sorties) selon la culture et la surface.
 
 ---
 

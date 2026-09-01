@@ -1,10 +1,10 @@
-## Chapitre 59 — Détecter les parcelles à risque de maladie
+## Détecter les parcelles à risque de maladie
 
 ---
 
 Humidité, température, rotation et traitements préventifs influencent le risque de maladie des cultures. Repérer les parcelles à risque permet d'intervenir avant les dégâts.
 
-Ce chapitre classifie le **risque de maladie** par parcelle (classification).
+Ce cas classifie le **risque de maladie** par parcelle (classification).
 
 ---
 

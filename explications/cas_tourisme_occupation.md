@@ -1,10 +1,10 @@
-## Chapitre 16 — Prévoir le taux d'occupation d'un hébergement
+## Prévoir le taux d'occupation d'un hébergement
 
 ---
 
 Quel taux d'occupation pour la semaine prochaine ? Ajuster le prix ou anticiper le personnel suppose de connaître la demande à venir.
 
-Ce chapitre prédit le **taux d'occupation (%)** à partir de l'historique hebdomadaire de votre hébergement.
+Ce cas prédit le **taux d'occupation (%)** à partir de l'historique hebdomadaire de votre hébergement.
 
 ---
 
@@ -56,7 +56,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

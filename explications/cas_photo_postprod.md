@@ -1,10 +1,10 @@
-## Chapitre 46 — Anticiper le temps de post-production
+## Anticiper le temps de post-production
 
 ---
 
 Tri, retouche, montage : la post-production mange une part importante du temps total d'un projet photo. Le nombre de photos brutes et le niveau de retouche changent tout.
 
-Ce chapitre prédit **trois postes de temps en heures** (multi-sorties) pour chiffrer et planifier la post-prod.
+Ce cas prédit **trois postes de temps en heures** (multi-sorties) pour chiffrer et planifier la post-prod.
 
 ---
 

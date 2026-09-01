@@ -1,10 +1,10 @@
-## Chapitre 65 — Prévoir le volume de courses et livraisons
+## Prévoir le volume de courses et livraisons
 
 ---
 
 Combien de courses demain ? Les jours fériés, la météo et les grèves font varier l'activité d'un réseau de transport.
 
-Ce chapitre prédit le **nombre de courses** pour planifier véhicules et chauffeurs.
+Ce cas prédit le **nombre de courses** pour planifier véhicules et chauffeurs.
 
 ---
 
@@ -58,7 +58,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

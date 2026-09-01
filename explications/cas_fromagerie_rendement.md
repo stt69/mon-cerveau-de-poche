@@ -1,10 +1,10 @@
-## Chapitre 68 — Estimer le rendement fromager
+## Estimer le rendement fromager
 
 ---
 
 Combien de kilos de meules pour ce volume de lait ? Le rendement fromager dépend de la matière grasse, des protéines, de la saison et des paramètres de fabrication.
 
-Ce chapitre estime le **poids des meules (kg)** à partir des caractéristiques du lait et du procédé.
+Ce cas estime le **poids des meules (kg)** à partir des caractéristiques du lait et du procédé.
 
 ---
 
@@ -61,7 +61,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

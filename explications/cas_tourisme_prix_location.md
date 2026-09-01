@@ -1,10 +1,10 @@
-## Chapitre 17 — Fixer le bon prix pour une location saisonnière
+## Fixer le bon prix pour une location saisonnière
 
 ---
 
 Fixer le prix d'une nuit en location saisonnière, c'est trouver le bon équilibre entre attractivité et marge. Capacité, équipements, saison et avis clients jouent tous un rôle.
 
-Ce chapitre estime le **prix par nuit** à partir d'annonces comparables.
+Ce cas estime le **prix par nuit** à partir d'annonces comparables.
 
 ---
 
@@ -57,7 +57,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

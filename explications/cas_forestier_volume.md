@@ -1,10 +1,10 @@
-## Chapitre 52 — Estimer le volume de bois d'une parcelle
+## Estimer le volume de bois d'une parcelle
 
 ---
 
 Estimer le volume de bois sur pied avant l'exploitation conditionne le devis, le matériel et la durée du chantier. Essence, âge, densité et exposition influencent le cubage.
 
-Ce chapitre prédit le **volume en m³** à partir des caractéristiques de la parcelle.
+Ce cas prédit le **volume en m³** à partir des caractéristiques de la parcelle.
 
 ---
 
@@ -56,7 +56,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

@@ -1,10 +1,10 @@
-## Chapitre 25 — Prévoir le délai de vente
+## Prévoir le délai de vente
 
 ---
 
 « Ce bien, il va partir en combien de temps ? » Tout agent immobilier entend cette question — du vendeur, du collègue, de lui-même en regardant son portefeuille un lundi matin. On sait qu'un bien au prix du marché part plus vite qu'un bien surévalué, et que le printemps est meilleur que l'hiver. Mais de combien de jours exactement ? Et les photos professionnelles, la visite virtuelle : est-ce que ça change vraiment quelque chose ?
 
-Ce chapitre apprend au réseau à prédire le **délai de vente en jours** à partir de l'historique de vos mandats aboutis. Vous pourrez trier vos mandats en cours par urgence prévue, chiffrer l'impact d'une baisse de prix, et argumenter avec des données plutôt qu'avec des impressions.
+Ce cas apprend au réseau à prédire le **délai de vente en jours** à partir de l'historique de vos mandats aboutis. Vous pourrez trier vos mandats en cours par urgence prévue, chiffrer l'impact d'une baisse de prix, et argumenter avec des données plutôt qu'avec des impressions.
 
 ---
 
@@ -26,7 +26,7 @@ Le fichier contient environ 300 mandats terminés (vendus) sur trois ans. Chaque
 
 La colonne **Delai_vente_jours** est la cible.
 
-**Point d'attention :** pour prédire le délai *avant* la mise en vente, n'utilisez que des colonnes connues à ce moment-là. Le nombre de visites réalisées, par exemple, n'existe pas encore — ce serait une fuite de données (voir chapitre 72).
+**Point d'attention :** pour prédire le délai *avant* la mise en vente, n'utilisez que des colonnes connues à ce moment-là. Le nombre de visites réalisées, par exemple, n'existe pas encore — ce serait une fuite de données (voir ).
 
 ---
 

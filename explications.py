@@ -3,12 +3,27 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent
 INDEX_PATH = BASE / "explications_index.json"
 
 _index: dict | None = None
+
+
+def _sans_numero_chapitre(texte: str) -> str:
+    lignes = texte.splitlines()
+    if lignes and lignes[0].startswith("## Chapitre "):
+        m = re.match(r"## Chapitre \d+ — (.+)", lignes[0])
+        if m:
+            lignes[0] = f"## {m.group(1)}"
+    texte = "\n".join(lignes)
+    texte = re.sub(r"\(chapitre \d+\)", "", texte, flags=re.IGNORECASE)
+    texte = re.sub(r"\bchapitre \d+\b", "", texte, flags=re.IGNORECASE)
+    texte = re.sub(r"Ce chapitre ", "Ce cas ", texte)
+    texte = re.sub(r"\n{3,}", "\n\n", texte)
+    return texte.strip()
 
 
 def _charger_index() -> dict:
@@ -28,7 +43,8 @@ def a_explication(nom_xlsx: str) -> bool:
 
 def titre_pour(nom_xlsx: str) -> str:
     meta = _charger_index().get(nom_xlsx) or {}
-    return meta.get("titre") or "Explication du cas"
+    titre = meta.get("titre") or "Explication du cas"
+    return re.sub(r"^Chapitre \d+ — ", "", titre)
 
 
 def charger_contenu(nom_xlsx: str) -> str | None:
@@ -38,4 +54,4 @@ def charger_contenu(nom_xlsx: str) -> str | None:
     chemin = BASE / meta["fichier"]
     if not chemin.is_file():
         return None
-    return chemin.read_text(encoding="utf-8")
+    return _sans_numero_chapitre(chemin.read_text(encoding="utf-8"))

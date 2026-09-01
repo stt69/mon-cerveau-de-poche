@@ -1,10 +1,10 @@
-## Chapitre 38 — Anticiper les ressources pédagogiques
+## Anticiper les ressources pédagogiques
 
 ---
 
 Salles, formateurs, supports, licences : la logistique pédagogique se complique vite en début de trimestre. Anticiper les besoins évite les réservations de dernière minute.
 
-Ce chapitre prédit **plusieurs ressources en parallèle** (multi-sorties) à partir du nombre de classes et d'élèves.
+Ce cas prédit **plusieurs ressources en parallèle** (multi-sorties) à partir du nombre de classes et d'élèves.
 
 ---
 

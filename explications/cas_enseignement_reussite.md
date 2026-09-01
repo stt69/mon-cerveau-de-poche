@@ -1,10 +1,10 @@
-## Chapitre 37 — Prévoir le taux de réussite d'une formation
+## Prévoir le taux de réussite d'une formation
 
 ---
 
 Avant de lancer une session, le formateur veut savoir si le public est prêt à réussir. Format, durée, taille du groupe et niveau d'entrée influencent le taux de réussite.
 
-Ce chapitre prédit le **taux de réussite (%)** à partir de l'historique de vos formations.
+Ce cas prédit le **taux de réussite (%)** à partir de l'historique de vos formations.
 
 ---
 
@@ -55,7 +55,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

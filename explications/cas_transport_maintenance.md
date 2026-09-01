@@ -1,10 +1,10 @@
-## Chapitre 66 — Anticiper les coûts de maintenance de la flotte
+## Anticiper les coûts de maintenance de la flotte
 
 ---
 
 Carburant, pneus, entretien, réparations : anticiper les coûts de flotte permet de budgétiser et de renouveler au bon moment.
 
-Ce chapitre prédit **quatre postes de maintenance** (multi-sorties) par véhicule et par mois.
+Ce cas prédit **quatre postes de maintenance** (multi-sorties) par véhicule et par mois.
 
 ---
 

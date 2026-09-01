@@ -1,10 +1,10 @@
-## Chapitre 35 — Détecter les défauts qualité
+## Détecter les défauts qualité
 
 ---
 
 Un lot défectueux coûte cher : retours clients, reprise, réputation. La qualité dépend de la machine, de l'opérateur, des conditions atelier et de la matière.
 
-Ce chapitre entraîne un modèle de **classification** pour signaler les lots à risque de défaut qualité.
+Ce cas entraîne un modèle de **classification** pour signaler les lots à risque de défaut qualité.
 
 ---
 

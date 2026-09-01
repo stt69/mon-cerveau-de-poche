@@ -1,10 +1,10 @@
-## Chapitre 53 — Prévoir le temps d'exploitation d'un chantier forestier
+## Prévoir le temps d'exploitation d'un chantier forestier
 
 ---
 
 Combien de jours pour exploiter cette parcelle ? Le volume, la pente, l'accessibilité et la météo modifient fortement la durée réelle constatée.
 
-Ce chapitre estime la **durée d'exploitation en jours**.
+Ce cas estime la **durée d'exploitation en jours**.
 
 ---
 
@@ -55,7 +55,7 @@ En mode Régression, la **régression linéaire** s'affiche d'abord (MAE, R²). 
 
 #### Étape 5 — Analyser les résultats
 
-Consultez le **tableau comparatif** et la **recommandation** (chapitre 10). Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
+Consultez le **tableau comparatif** et la **recommandation** . Un R² réseau > 0.75 indique que le modèle capture bien les variations. Si la régression suffit, recopiez les **formules** (équation, Excel, Python).
 
 #### Étape 6 — Prédire
 

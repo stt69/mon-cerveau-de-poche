@@ -1,10 +1,10 @@
-## Chapitre 51 — Détecter les échantillons anormaux
+## Détecter les échantillons anormaux
 
 ---
 
 Un échantillon anormal peut signaler une erreur de prélèvement, de stockage ou de manipulation. Le repérer tôt évite de valider un résultat faux.
 
-Ce chapitre entraîne un modèle de **classification** pour détecter les échantillons anormaux.
+Ce cas entraîne un modèle de **classification** pour détecter les échantillons anormaux.
 
 ---
 

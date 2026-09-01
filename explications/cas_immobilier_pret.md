@@ -1,10 +1,10 @@
-## Chapitre 26 — Anticiper le montant d'un prêt accordé
+## Anticiper le montant d'un prêt accordé
 
 ---
 
 Un couple entre dans votre bureau : « On peut emprunter combien ? » Vous connaissez la règle des 33 % d'endettement, le poids du CDI, l'importance de l'apport. Vous faites un calcul rapide sur une feuille — et la banque accorde parfois 20 000 € de moins, parfois 15 000 € de plus. Pourquoi ? Parce que les banques appliquent des critères officiels *et* des pratiques réelles que seul l'historique révèle.
 
-Ce chapitre entraîne le réseau sur vos dossiers passés pour estimer le **montant réellement accordé** — pas le montant théorique du calculateur, mais ce que votre réseau bancaire a effectivement validé pour des profils similaires.
+Ce cas entraîne le réseau sur vos dossiers passés pour estimer le **montant réellement accordé** — pas le montant théorique du calculateur, mais ce que votre réseau bancaire a effectivement validé pour des profils similaires.
 
 ---
 
