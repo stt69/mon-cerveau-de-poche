@@ -135,6 +135,173 @@ def tracer_residus(y_vrai, y_pred, colonnes_cible, ax):
     ax.grid(True, alpha=0.3)
 
 
+def afficher_bloc_resultats(snap: dict) -> None:
+    """Réaffiche les graphiques et métriques après un rerun (clic ℹ️, etc.)."""
+    mode_str = snap["mode"]
+    colonnes_cible = snap["colonnes_cible"]
+    historique = snap.get("historique")
+
+    if mode_str == "regression" and snap.get("mae_reg") is not None:
+        st.subheader("📐 Régression linéaire multiple (référence)")
+        st.caption(
+            "Modèle classique ajusté sur le même jeu d'entraînement, "
+            "évalué sur le même jeu de test."
+        )
+        afficher_metriques_regression(
+            snap["mae_reg"], snap["r2_reg"], colonnes_cible)
+        if snap.get("rank_reg") is not None and snap["rank_reg"] < snap["n_entrees"] + 1:
+            st.caption(
+                f"Rang effectif du modèle : {snap['rank_reg']} "
+                "(certaines entrées sont redondantes ou trop corrélées)."
+            )
+        st.divider()
+        st.subheader("🧠 Réseau de neurones")
+
+    col1, col2, col3 = st.columns(3)
+    if historique:
+        with col1:
+            fig1, ax1 = plt.subplots(figsize=(4, 3))
+            tracer_mae(historique, colonnes_cible, None, None, ax1)
+            fig1.tight_layout()
+            st.pyplot(fig1)
+            plt.close(fig1)
+            ag_aide.afficher_puce_aide(
+                "mae", "Courbe d'erreur (MAE)", ag_aide.AIDE_COURBE_MAE)
+        with col2:
+            if mode_str == "regression":
+                fig2, ax2 = plt.subplots(figsize=(4, 3))
+                tracer_pred_vs_reel(
+                    snap["y_test_reel"], snap["y_pred_reel"], colonnes_cible, ax2)
+                fig2.tight_layout()
+                st.pyplot(fig2)
+                plt.close(fig2)
+                ag_aide.afficher_puce_aide(
+                    "pred", "Prédit vs Réel", ag_aide.AIDE_PREDIT_REEL)
+            else:
+                fig2, ax2 = plt.subplots(figsize=(4, 3))
+                tracer_confusion(
+                    snap["y_cls_vrai"], snap["y_cls_pred"], snap["classes"], ax2)
+                fig2.tight_layout()
+                st.pyplot(fig2)
+                plt.close(fig2)
+                ag_aide.afficher_puce_aide(
+                    "confusion", "Matrice de confusion", ag_aide.AIDE_MATRICE_CONFUSION)
+        with col3:
+            if mode_str == "regression":
+                fig3, ax3 = plt.subplots(figsize=(4, 3))
+                tracer_residus(
+                    snap["y_test_reel"], snap["y_pred_reel"], colonnes_cible, ax3)
+                fig3.tight_layout()
+                st.pyplot(fig3)
+                plt.close(fig3)
+                ag_aide.afficher_puce_aide(
+                    "residus", "Résidus", ag_aide.AIDE_RESIDUS)
+            else:
+                fig3, ax3 = plt.subplots(figsize=(4, 3))
+                ax3.text(
+                    0.5, 0.5, f"{snap['acc']:.1f}%", transform=ax3.transAxes,
+                    fontsize=48, ha="center", va="center", fontweight="bold",
+                    color=COULEURS[0],
+                )
+                ax3.set_title("Précision", fontsize=11, fontweight="bold")
+                ax3.axis("off")
+                fig3.tight_layout()
+                st.pyplot(fig3)
+                plt.close(fig3)
+                ag_aide.afficher_puce_aide(
+                    "precision", "Précision", ag_aide.AIDE_PRECISION)
+
+    if mode_str == "regression" and snap.get("mae_nn") is not None:
+        st.subheader("📊 Métriques réseau (jeu de test)")
+        afficher_metriques_regression(
+            snap["mae_nn"], snap["r2_nn"], colonnes_cible)
+        st.subheader("⚖️ Comparaison régression vs réseau")
+        st.dataframe(
+            tableau_comparaison(
+                colonnes_cible, snap["mae_reg"], snap["mae_nn"],
+                snap["r2_reg"], snap["r2_nn"],
+            ),
+            use_container_width=True, hide_index=True,
+        )
+        titre, message, style = recommander_reseau(
+            snap["mae_reg"], snap["mae_nn"], snap["r2_reg"], snap["r2_nn"],
+            snap["n_lignes"], snap.get("mae_train_nn"), snap.get("mae_val_nn"),
+        )
+        st.subheader("💡 Recommandation")
+        if style == "success":
+            st.success(f"**{titre}** — {message}")
+        elif style == "info":
+            st.info(f"**{titre}** — {message}")
+        else:
+            st.warning(f"**{titre}** — {message}")
+        st.caption(
+            "Outil d'aide à la décision — votre expertise métier reste indispensable."
+        )
+        if "regression" in st.session_state and recommandation_favorise_regression(titre):
+            afficher_formules_regression(
+                st.session_state.regression,
+                snap["colonnes_entree"],
+                colonnes_cible,
+            )
+    elif mode_str == "classification" and snap.get("acc") is not None:
+        st.subheader("📊 Métriques sur les données de test")
+        st.metric("Précision", f"{snap['acc']:.1f} %")
+        n_ok = int(np.sum(snap["y_cls_vrai"] == snap["y_cls_pred"]))
+        st.caption(f"{n_ok} / {len(snap['y_cls_vrai'])} prédictions correctes")
+
+    st.success("✅ Entraînement terminé !")
+    st.subheader("💾 Sauvegarder le modèle entraîné")
+    st.download_button(
+        "⬇️ Télécharger le modèle (.zip)",
+        data=snap["bundle"],
+        file_name=snap["bundle_name"],
+        mime="application/zip",
+        key="btn_sauver",
+    )
+
+
+def afficher_prediction_rapide() -> None:
+    """Formulaire de prédiction sur une ligne (barre latérale)."""
+    st.header("🔮 Prédiction rapide")
+    if "reseau" in st.session_state and "colonnes_entree" in st.session_state:
+        valeurs_pred = []
+        for col in st.session_state.colonnes_entree:
+            v = st.number_input(f"{col}", value=0.0, key=f"pred_{col}", format="%.4f")
+            valeurs_pred.append(v)
+
+        if st.button("Calculer", key="btn_pred_rapide"):
+            try:
+                reseau = st.session_state.reseau
+                nX = st.session_state.norm_X
+                nY = st.session_state.norm_y
+                mode = st.session_state.get('mode', 'regression')
+
+                row = np.array([valeurs_pred], dtype=np.float64)
+                row_n = nX.transformer(row)
+                pred_n = reseau.predire(row_n)
+
+                if mode == 'classification':
+                    classes = st.session_state.get('classes', [0, 1, 2])
+                    classe = classes[np.argmax(pred_n[0])]
+                    st.session_state.resultat_rapide = f"Classe prédite : **{classe}**"
+                else:
+                    pred_nn = nY.inverser(pred_n)[0]
+                    cols = st.session_state.colonnes_cible
+                    parties = [f"Réseau **{c}** = {v:,.2f}" for c, v in zip(cols, pred_nn)]
+                    if "regression" in st.session_state:
+                        pred_reg = st.session_state.regression.predire(row)[0]
+                        parties += [f"Régression **{c}** = {v:,.2f}"
+                                    for c, v in zip(cols, pred_reg)]
+                    st.session_state.resultat_rapide = " · ".join(parties)
+            except Exception as e:
+                st.error(f"Erreur : {e}")
+
+        if "resultat_rapide" in st.session_state:
+            st.success(st.session_state.resultat_rapide)
+    else:
+        st.caption("Entraînez ou chargez un modèle pour prédire.")
+
+
 def tracer_confusion(y_vrai, y_pred, classes, ax):
     """Matrice de confusion pour la classification."""
     n = len(classes)
@@ -238,6 +405,25 @@ def _rerun():
 
 
 AUTH_CONFIG_PATH = Path(__file__).resolve().parent / "auth_config.yaml"
+CC_BY_NC_IMAGE = Path(__file__).resolve().parent / "assets" / "cc-by-nc-nd.png"
+
+
+def afficher_credit_sidebar() -> None:
+    """Badge CC BY-NC-ND et crédit auteur, en haut de la barre latérale."""
+    if CC_BY_NC_IMAGE.is_file():
+        st.image(str(CC_BY_NC_IMAGE), width=140)
+    st.markdown(
+        '<p style="font-size:0.72rem;line-height:1.25;margin:0.15rem 0 0.6rem 0;'
+        'color:rgba(49,51,63,0.7);">'
+        '<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr" '
+        'target="_blank" rel="license" style="color:inherit;text-decoration:none;">'
+        'CC BY-NC-ND 4.0</a><br>'
+        'Prof. Dr. Thomas Steiner<br>'
+        '<a href="mailto:thomas@immotour.swiss" style="color:inherit;">'
+        'thomas@immotour.swiss</a>'
+        '</p>',
+        unsafe_allow_html=True,
+    )
 
 CATEGORIES_EXEMPLES = {
     "pratique": "Cas pratiques (commerce)",
@@ -557,6 +743,7 @@ st.caption("Entraînez un réseau de neurones sur vos données Excel — sans co
 # ── Barre latérale ─────────────────────────────────────────
 
 with st.sidebar:
+    afficher_credit_sidebar()
     if authenticator is not None:
         nom = st.session_state.get("name") or st.session_state.get("username", "")
         st.caption(f"Connecté : {nom}")
@@ -690,49 +877,6 @@ with st.sidebar:
         ),
     )
 
-    st.divider()
-
-    # ── Prédiction rapide ──
-    st.header("🔮 Prédiction rapide")
-    if "reseau" in st.session_state and "colonnes_entree" in st.session_state:
-        valeurs_pred = []
-        for col in st.session_state.colonnes_entree:
-            v = st.number_input(f"{col}", value=0.0, key=f"pred_{col}", format="%.4f")
-            valeurs_pred.append(v)
-
-        if st.button("Calculer", key="btn_pred_rapide"):
-            try:
-                reseau = st.session_state.reseau
-                nX = st.session_state.norm_X
-                nY = st.session_state.norm_y
-                mode = st.session_state.get('mode', 'regression')
-
-                row = np.array([valeurs_pred], dtype=np.float64)
-                row_n = nX.transformer(row)
-                pred_n = reseau.predire(row_n)
-
-                if mode == 'classification':
-                    classes = st.session_state.get('classes', [0, 1, 2])
-                    classe = classes[np.argmax(pred_n[0])]
-                    st.session_state.resultat_rapide = f"Classe prédite : **{classe}**"
-                else:
-                    pred_nn = nY.inverser(pred_n)[0]
-                    cols = st.session_state.colonnes_cible
-                    parties = [f"Réseau **{c}** = {v:,.2f}" for c, v in zip(cols, pred_nn)]
-                    if "regression" in st.session_state:
-                        pred_reg = st.session_state.regression.predire(row)[0]
-                        parties += [f"Régression **{c}** = {v:,.2f}"
-                                    for c, v in zip(cols, pred_reg)]
-                    st.session_state.resultat_rapide = " · ".join(parties)
-            except Exception as e:
-                st.error(f"Erreur : {e}")
-
-        if "resultat_rapide" in st.session_state:
-            st.success(st.session_state.resultat_rapide)
-    else:
-        st.caption("Entraînez ou chargez un modèle pour prédire.")
-
-
 # ── Zone principale ────────────────────────────────────────
 
 st.subheader("📂 Données")
@@ -771,6 +915,7 @@ if source_donnees == "Exemples":
                 st.session_state.df = pd.read_excel(choix)
                 st.session_state.donnees_id = id_source
                 st.session_state.pop("selection_cibles", None)
+                st.session_state.pop("affichage_entrainement", None)
             df = st.session_state.df
             st.caption(f"Fichier : `{choix.name}`")
 
@@ -793,6 +938,7 @@ else:
             st.session_state.df = pd.read_excel(fichier_excel)
             st.session_state.donnees_id = id_source
             st.session_state.pop("selection_cibles", None)
+            st.session_state.pop("affichage_entrainement", None)
         df = st.session_state.df
         st.caption(f"Fichier : `{fichier_excel.name}`")
 
@@ -851,18 +997,6 @@ if df is not None:
             mae_reg = np.atleast_1d(calculer_mae(y_test_reel, y_pred_reg))
             r2_reg = np.atleast_1d(calculer_r2(y_test_reel, y_pred_reg))
 
-            st.subheader("📐 Régression linéaire multiple (référence)")
-            st.caption(
-                "Modèle classique ajusté sur le même jeu d'entraînement, "
-                "évalué sur le même jeu de test."
-            )
-            afficher_metriques_regression(mae_reg, r2_reg, colonnes_cible)
-            if reg.rank < X.shape[1] + 1:
-                st.caption(
-                    f"Rang effectif du modèle : {reg.rank} "
-                    "(certaines entrées sont redondantes ou trop corrélées)."
-                )
-
         # Normalisation
         norm_X = Normaliseur().ajuster(X)
         X_n = norm_X.transformer(X)
@@ -893,10 +1027,6 @@ if df is not None:
         y_train = y_n[idx_train]
         y_test = y_n[idx_test]
 
-        if mode_str == 'regression':
-            st.divider()
-            st.subheader("🧠 Réseau de neurones")
-
         # Architecture
         arch = [X_n.shape[1]]
         for _ in range(couches):
@@ -912,157 +1042,107 @@ if df is not None:
             graine=graine,
         )
 
-        # Placeholders pour l'animation
-        barre = st.progress(0, text="Entraînement...")
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            ph_mae = st.empty()
-        with col2:
-            ph_pred = st.empty()
-        with col3:
-            ph_res = st.empty()
+        # Placeholders pour l'animation (retirés ensuite : le bloc persistant les remplace)
+        zone_anim = st.empty()
+        with zone_anim.container():
+            barre = st.progress(0, text="Entraînement...")
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                ph_mae = st.empty()
+            with col2:
+                ph_pred = st.empty()
+            with col3:
+                ph_res = st.empty()
 
-        etat = {'historique': None}
+            etat = {'historique': None}
 
-        def rappel_epoque(ep, hist):
-            etat['historique'] = hist
-            barre.progress((ep + 1) / epoques,
-                           text=f"Époque {ep + 1}/{epoques}")
+            def rappel_epoque(ep, hist):
+                etat['historique'] = hist
+                barre.progress((ep + 1) / epoques,
+                               text=f"Époque {ep + 1}/{epoques}")
 
-            if not animer:
-                return
+                if not animer:
+                    return
 
-            # ── MAE ──
-            fig1, ax1 = plt.subplots(figsize=(4, 3))
-            tracer_mae(hist, colonnes_cible, norm_y, None, ax1)
-            fig1.tight_layout()
-            ph_mae.pyplot(fig1)
-            plt.close(fig1)
+                fig1, ax1 = plt.subplots(figsize=(4, 3))
+                tracer_mae(hist, colonnes_cible, norm_y, None, ax1)
+                fig1.tight_layout()
+                ph_mae.pyplot(fig1)
+                plt.close(fig1)
 
-            # ── Prédit vs Réel / Confusion ──
-            pred_val = reseau.predire(X_test)
-            if mode_str == 'regression' and norm_y is not None:
-                y_test_reel = norm_y.inverser(y_test)
-                y_pred_reel = norm_y.inverser(pred_val)
-                fig2, ax2 = plt.subplots(figsize=(4, 3))
-                tracer_pred_vs_reel(y_test_reel, y_pred_reel, colonnes_cible, ax2)
-                fig2.tight_layout()
-                ph_pred.pyplot(fig2)
-                plt.close(fig2)
+                pred_val = reseau.predire(X_test)
+                if mode_str == 'regression' and norm_y is not None:
+                    y_test_anim = norm_y.inverser(y_test)
+                    y_pred_anim = norm_y.inverser(pred_val)
+                    fig2, ax2 = plt.subplots(figsize=(4, 3))
+                    tracer_pred_vs_reel(y_test_anim, y_pred_anim, colonnes_cible, ax2)
+                    fig2.tight_layout()
+                    ph_pred.pyplot(fig2)
+                    plt.close(fig2)
 
-                fig3, ax3 = plt.subplots(figsize=(4, 3))
-                tracer_residus(y_test_reel, y_pred_reel, colonnes_cible, ax3)
-                fig3.tight_layout()
-                ph_res.pyplot(fig3)
-                plt.close(fig3)
-            elif mode_str == 'classification':
-                y_cls_vrai = np.array([classes[i] for i in np.argmax(y_test, axis=1)])
-                y_cls_pred = np.array([classes[i] for i in np.argmax(pred_val, axis=1)])
-                fig2, ax2 = plt.subplots(figsize=(4, 3))
-                tracer_confusion(y_cls_vrai, y_cls_pred, classes, ax2)
-                fig2.tight_layout()
-                ph_pred.pyplot(fig2)
-                plt.close(fig2)
+                    fig3, ax3 = plt.subplots(figsize=(4, 3))
+                    tracer_residus(y_test_anim, y_pred_anim, colonnes_cible, ax3)
+                    fig3.tight_layout()
+                    ph_res.pyplot(fig3)
+                    plt.close(fig3)
+                elif mode_str == 'classification':
+                    y_cls_vrai_a = np.array([classes[i] for i in np.argmax(y_test, axis=1)])
+                    y_cls_pred_a = np.array([classes[i] for i in np.argmax(pred_val, axis=1)])
+                    fig2, ax2 = plt.subplots(figsize=(4, 3))
+                    tracer_confusion(y_cls_vrai_a, y_cls_pred_a, classes, ax2)
+                    fig2.tight_layout()
+                    ph_pred.pyplot(fig2)
+                    plt.close(fig2)
 
-                acc = np.mean(y_cls_vrai == y_cls_pred) * 100
-                fig3, ax3 = plt.subplots(figsize=(4, 3))
-                ax3.text(0.5, 0.5, f"{acc:.1f}%", transform=ax3.transAxes,
-                         fontsize=48, ha='center', va='center', fontweight='bold',
-                         color=COULEURS[0])
-                ax3.set_title("Précision", fontsize=11, fontweight='bold')
-                ax3.axis('off')
-                fig3.tight_layout()
-                ph_res.pyplot(fig3)
-                plt.close(fig3)
+                    acc_a = np.mean(y_cls_vrai_a == y_cls_pred_a) * 100
+                    fig3, ax3 = plt.subplots(figsize=(4, 3))
+                    ax3.text(0.5, 0.5, f"{acc_a:.1f}%", transform=ax3.transAxes,
+                             fontsize=48, ha='center', va='center', fontweight='bold',
+                             color=COULEURS[0])
+                    ax3.set_title("Précision", fontsize=11, fontweight='bold')
+                    ax3.axis('off')
+                    fig3.tight_layout()
+                    ph_res.pyplot(fig3)
+                    plt.close(fig3)
 
-        # ── Lancer l'entraînement ──
-        reseau.entrainer(X_train, y_train, epoques=epoques, taille_lot=taille_lot,
-                         X_val=X_test, y_val=y_test, rappel=rappel_epoque)
+            reseau.entrainer(X_train, y_train, epoques=epoques, taille_lot=taille_lot,
+                             X_val=X_test, y_val=y_test, rappel=rappel_epoque)
+            barre.progress(1.0, text="Terminé !")
+            if not animer and etat['historique']:
+                rappel_epoque(epoques - 1, etat['historique'])
+        zone_anim.empty()
 
-        barre.progress(1.0, text="Terminé !")
-
-        # Rendu final (si pas d'animation, dessiner une fois)
-        if not animer and etat['historique']:
-            rappel_epoque(epoques - 1, etat['historique'])
-
-        # Puces d'aide sous chaque graphique
-        with col1:
-            ag_aide.afficher_puce_aide(
-                "mae", "Courbe d'erreur (MAE)", ag_aide.AIDE_COURBE_MAE)
-        with col2:
-            if mode_str == 'regression':
-                ag_aide.afficher_puce_aide(
-                    "pred", "Prédit vs Réel", ag_aide.AIDE_PREDIT_REEL)
-            else:
-                ag_aide.afficher_puce_aide(
-                    "confusion", "Matrice de confusion", ag_aide.AIDE_MATRICE_CONFUSION)
-        with col3:
-            if mode_str == 'regression':
-                ag_aide.afficher_puce_aide(
-                    "residus", "Résidus", ag_aide.AIDE_RESIDUS)
-            else:
-                ag_aide.afficher_puce_aide(
-                    "precision", "Précision", ag_aide.AIDE_PRECISION)
-
-        # ── Métriques finales ──
         pred_final = reseau.predire(X_test)
+        y_pred_reel = y_cls_vrai = y_cls_pred = None
+        mae_par_cible = r2_par_cible = None
+        mae_train_nn = mae_val_nn = None
+        acc = None
 
         if mode_str == 'regression' and norm_y is not None:
             y_test_reel = norm_y.inverser(y_test)
             y_pred_reel = norm_y.inverser(pred_final)
             mae_par_cible = np.atleast_1d(calculer_mae(y_test_reel, y_pred_reel))
             r2_par_cible = np.atleast_1d(calculer_r2(y_test_reel, y_pred_reel))
-
-            st.subheader("📊 Métriques réseau (jeu de test)")
-            afficher_metriques_regression(mae_par_cible, r2_par_cible, colonnes_cible)
-
-            # ── Comparaison ──
-            st.subheader("⚖️ Comparaison régression vs réseau")
-            st.dataframe(
-                tableau_comparaison(
-                    colonnes_cible, mae_reg, mae_par_cible, r2_reg, r2_par_cible),
-                use_container_width=True, hide_index=True,
-            )
-
-            # ── Recommandation ──
-            mae_train_nn = mae_val_nn = None
             if etat['historique'] and etat['historique']['mae_train']:
                 mae_train_nn = etat['historique']['mae_train'][-1]
                 if etat['historique']['mae_val']:
                     mae_val_nn = etat['historique']['mae_val'][-1]
-                    if norm_y is not None:
-                        echelle = float(np.mean(norm_y.echelle_))
-                        mae_train_nn *= echelle
-                        mae_val_nn *= echelle
-
-            titre, message, style = recommander_reseau(
-                mae_reg, mae_par_cible, r2_reg, r2_par_cible,
-                n_lignes, mae_train_nn, mae_val_nn,
-            )
-            st.subheader("💡 Recommandation")
-            if style == 'success':
-                st.success(f"**{titre}** — {message}")
-            elif style == 'info':
-                st.info(f"**{titre}** — {message}")
-            else:
-                st.warning(f"**{titre}** — {message}")
-            st.caption(
-                "Outil d'aide à la décision — votre expertise métier reste indispensable."
-            )
-
-            if reg is not None and recommandation_favorise_regression(titre):
-                afficher_formules_regression(reg, colonnes_entree, colonnes_cible)
-
+                    echelle = float(np.mean(norm_y.echelle_))
+                    mae_train_nn *= echelle
+                    mae_val_nn *= echelle
         elif mode_str == 'classification':
             y_cls_vrai = np.array([classes[i] for i in np.argmax(y_test, axis=1)])
             y_cls_pred = np.array([classes[i] for i in np.argmax(pred_final, axis=1)])
-            acc = np.mean(y_cls_vrai == y_cls_pred) * 100
-            st.subheader("📊 Métriques sur les données de test")
-            st.metric("Précision", f"{acc:.1f} %")
-            st.caption(f"{int(np.sum(y_cls_vrai == y_cls_pred))} / {len(y_cls_vrai)} "
-                       "prédictions correctes")
+            acc = float(np.mean(y_cls_vrai == y_cls_pred) * 100)
 
-        # Sauvegarder dans la session
+        ts = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        bundle = reseau.vers_bytes(
+            norm_X=norm_X, norm_y=norm_y,
+            colonnes_entree=colonnes_entree,
+            colonnes_cible=colonnes_cible,
+            mode_cls_classes=classes,
+        )
+
         st.session_state.reseau = reseau
         st.session_state.norm_X = norm_X
         st.session_state.norm_y = norm_y
@@ -1076,24 +1156,32 @@ if df is not None:
             st.session_state.pop('regression', None)
         st.session_state.pop("resultat_rapide", None)
 
-        st.success("✅ Entraînement terminé !")
+        st.session_state.affichage_entrainement = {
+            "mode": mode_str,
+            "colonnes_cible": list(colonnes_cible),
+            "colonnes_entree": list(colonnes_entree),
+            "historique": etat["historique"],
+            "y_test_reel": y_test_reel,
+            "y_pred_reel": y_pred_reel,
+            "y_cls_vrai": y_cls_vrai,
+            "y_cls_pred": y_cls_pred,
+            "classes": classes,
+            "acc": acc,
+            "mae_reg": mae_reg,
+            "r2_reg": r2_reg,
+            "mae_nn": mae_par_cible,
+            "r2_nn": r2_par_cible,
+            "n_lignes": n_lignes,
+            "n_entrees": X.shape[1],
+            "rank_reg": getattr(reg, "rank", None),
+            "mae_train_nn": mae_train_nn,
+            "mae_val_nn": mae_val_nn,
+            "bundle": bundle,
+            "bundle_name": f"cerveau_{ts}.zip",
+        }
 
-        # ── Bouton de sauvegarde ──
-        st.subheader("💾 Sauvegarder le modèle entraîné")
-        ts = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        bundle = reseau.vers_bytes(
-            norm_X=norm_X, norm_y=norm_y,
-            colonnes_entree=colonnes_entree,
-            colonnes_cible=colonnes_cible,
-            mode_cls_classes=classes,
-        )
-        st.download_button(
-            "⬇️ Télécharger le modèle (.zip)",
-            data=bundle,
-            file_name=f"cerveau_{ts}.zip",
-            mime="application/zip",
-            key="btn_sauver",
-        )
+    if "affichage_entrainement" in st.session_state:
+        afficher_bloc_resultats(st.session_state.affichage_entrainement)
 
 # ── Prédiction en lot ──────────────────────────────────────
 
@@ -1148,3 +1236,9 @@ if "reseau" in st.session_state and "df" in st.session_state:
         )
 else:
     st.info("Entraînez ou chargez un modèle, puis chargez des données pour prédire.")
+
+# Affiché après l'entraînement : la barre latérale du haut est rendue avant
+# que le modèle soit enregistré dans la session.
+with st.sidebar:
+    st.divider()
+    afficher_prediction_rapide()

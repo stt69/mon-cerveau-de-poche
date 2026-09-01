@@ -249,12 +249,14 @@ def _ouvrir_popup(titre: str, contenu: str) -> None:
 
 
 def afficher_puce_aide(cle: str, titre: str, contenu: str) -> None:
-    """Puce ℹ️ centrée sous un graphique."""
-    if not hasattr(st, "dialog"):
-        return
+    """Puce ℹ️ centrée sous un graphique (popover, sans relancer l'entraînement)."""
     _, col_btn, _ = st.columns([2, 1, 2])
     with col_btn:
-        if st.button("ℹ️", key=f"aide_graph_{cle}", help="Explication"):
+        if hasattr(st, "popover"):
+            with st.popover("ℹ️", help="Explication"):
+                st.markdown(f"**{titre}**\n\n{contenu}" if titre else contenu)
+            return
+        if hasattr(st, "dialog") and st.button("ℹ️", key=f"aide_graph_{cle}", help="Explication"):
             _ouvrir_popup(titre, contenu)
 
 
