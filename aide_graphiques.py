@@ -210,6 +210,33 @@ Changez-la si vous voulez vérifier que vos résultats ne dépendent pas d'un co
 """
 
 
+def injecter_style_puces_sidebar() -> None:
+    """Harmonise le fond des puces ℹ️ avec la barre latérale."""
+    st.markdown(
+        """
+        <style>
+        section[data-testid="stSidebar"] div[data-testid="stPopover"] > button {
+            background-color: var(--secondary-background-color) !important;
+            border: 1px solid transparent !important;
+            box-shadow: none !important;
+            padding: 0.15rem 0.35rem !important;
+            min-height: 0 !important;
+        }
+        section[data-testid="stSidebar"] div[data-testid="stPopover"] > button:hover {
+            background-color: rgba(151, 166, 195, 0.25) !important;
+            border-color: transparent !important;
+        }
+        section[data-testid="stSidebar"] button[kind="secondary"][data-testid="stBaseButton-secondary"] {
+            background-color: var(--secondary-background-color) !important;
+            border: 1px solid transparent !important;
+            box-shadow: none !important;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 def _ouvrir_popup(titre: str, contenu: str) -> None:
     if not hasattr(st, "dialog"):
         return

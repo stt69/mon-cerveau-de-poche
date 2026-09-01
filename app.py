@@ -255,6 +255,8 @@ CATEGORIES_EXEMPLES = {
     "info": "Informatique",
     "transport": "Transport",
     "fromagerie": "Fromagerie",
+    "gastronomie": "Gastronomie",
+    "arithmetique": "Arithmétique",
 }
 
 
@@ -774,7 +776,7 @@ if source_donnees == "Exemples":
 
             if exp.a_explication(choix.name) and hasattr(st, "dialog"):
                 if st.button("📖 Expliquer ce cas", key=f"expliquer_{choix.name}"):
-                    contenu = exp.charger_contenu(choix.name)
+                    contenu = exp.contenu_pour_popup(choix.name)
                     titre = exp.titre_pour(choix.name)
 
                     @st.dialog(titre)

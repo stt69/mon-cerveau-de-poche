@@ -298,5 +298,57 @@
     "fichier": "explications/cas_fromagerie_affinage.md",
     "chapitre": 71,
     "titre": "Détecter les lots à risque de défaut d'affinage"
+  },
+  "cas_gastronomie_foodcost.xlsx": {
+    "fichier": "explications/cas_gastronomie_foodcost.md",
+    "titre": "Estimer le coût matière d'un plat"
+  },
+  "cas_gastronomie_preparation.xlsx": {
+    "fichier": "explications/cas_gastronomie_preparation.md",
+    "titre": "Estimer le temps de préparation"
+  },
+  "cas_gastronomie_noshow.xlsx": {
+    "fichier": "explications/cas_gastronomie_noshow.md",
+    "titre": "Détecter le risque de no-show"
+  },
+  "cas_gastronomie_service.xlsx": {
+    "fichier": "explications/cas_gastronomie_service.md",
+    "titre": "Estimer la durée d'un service"
+  },
+  "cas_gastronomie_gaspillage.xlsx": {
+    "fichier": "explications/cas_gastronomie_gaspillage.md",
+    "titre": "Anticiper le gaspillage alimentaire"
+  },
+  "cas_gastronomie_approvisionnement.xlsx": {
+    "fichier": "explications/cas_gastronomie_approvisionnement.md",
+    "titre": "Anticiper l'approvisionnement d'un service"
+  },
+  "cas_arithmetique_addition.xlsx": {
+    "fichier": "explications/cas_arithmetique_addition.md",
+    "titre": "Apprendre l'addition"
+  },
+  "cas_arithmetique_soustraction.xlsx": {
+    "fichier": "explications/cas_arithmetique_soustraction.md",
+    "titre": "Apprendre la soustraction"
+  },
+  "cas_arithmetique_multiplication.xlsx": {
+    "fichier": "explications/cas_arithmetique_multiplication.md",
+    "titre": "Apprendre la multiplication"
+  },
+  "cas_arithmetique_division.xlsx": {
+    "fichier": "explications/cas_arithmetique_division.md",
+    "titre": "Apprendre la division"
+  },
+  "cas_arithmetique_puissance.xlsx": {
+    "fichier": "explications/cas_arithmetique_puissance.md",
+    "titre": "Apprendre la puissance"
+  },
+  "cas_arithmetique_racine.xlsx": {
+    "fichier": "explications/cas_arithmetique_racine.md",
+    "titre": "Apprendre la racine carrée"
+  },
+  "cas_arithmetique_modulo.xlsx": {
+    "fichier": "explications/cas_arithmetique_modulo.md",
+    "titre": "Apprendre le modulo (reste)"
   }
 }

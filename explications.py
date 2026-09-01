@@ -55,3 +55,16 @@ def charger_contenu(nom_xlsx: str) -> str | None:
     if not chemin.is_file():
         return None
     return _sans_numero_chapitre(chemin.read_text(encoding="utf-8"))
+
+
+def contenu_pour_popup(nom_xlsx: str) -> str | None:
+    """Contenu sans le titre H2 initial (déjà affiché dans l'en-tête du dialogue)."""
+    contenu = charger_contenu(nom_xlsx)
+    if not contenu:
+        return None
+    lignes = contenu.splitlines()
+    if lignes and lignes[0].startswith("## "):
+        lignes = lignes[1:]
+        while lignes and lignes[0].strip() in ("", "---"):
+            lignes = lignes[1:]
+    return "\n".join(lignes).strip()
