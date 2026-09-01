@@ -26,6 +26,7 @@ from cerveau_poche import (
     recommandation_favorise_regression,
 )
 import auth_gestion as ag
+import explications as exp
 
 # ── Configuration ───────────────────────────────────────────
 st.set_page_config(
@@ -676,6 +677,17 @@ if source_donnees == "Exemple du livre":
                 st.session_state.pop("selection_cibles", None)
             df = st.session_state.df
             st.caption(f"Fichier : `{choix.name}`")
+
+            if exp.a_explication(choix.name) and hasattr(st, "dialog"):
+                if st.button("📖 Expliquer ce cas", key=f"expliquer_{choix.name}"):
+                    contenu = exp.charger_contenu(choix.name)
+                    titre = exp.titre_pour(choix.name)
+
+                    @st.dialog(titre)
+                    def popup_explication():
+                        st.markdown(contenu)
+
+                    popup_explication()
 else:
     fichier_excel = st.file_uploader(
         "Charger votre fichier Excel (.xlsx)", type=["xlsx"], key="fichier_excel")
