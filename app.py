@@ -28,6 +28,8 @@ from cerveau_poche import (
 import auth_gestion as ag
 import explications as exp
 import aide_graphiques as ag_aide
+import code_source as cs
+import telechargements as tel
 
 # ── Configuration ───────────────────────────────────────────
 st.set_page_config(
@@ -318,11 +320,35 @@ def verifier_authentification():
 
     authenticator = stauth.Authenticate(str(AUTH_CONFIG_PATH))
 
-    onglet_login, onglet_premier = st.tabs(
-        ["Se connecter", "Première connexion"]
+    menu_options = [
+        "Se connecter",
+        "Première connexion",
+        "Code source",
+        "Application Windows",
+        "Application Mac",
+    ]
+    section = st.radio(
+        "Menu",
+        menu_options,
+        horizontal=True,
+        label_visibility="collapsed",
+        key="menu_public",
     )
 
-    with onglet_login:
+    menu_precedent = st.session_state.get("_menu_public_precedent")
+    ouvrir_code = section == "Code source" and menu_precedent != "Code source"
+    st.session_state["_menu_public_precedent"] = section
+
+    if section == "Code source":
+        cs.onglet_code_source(ouvrir_popup=ouvrir_code)
+
+    elif section == "Application Windows":
+        tel.onglet_application_windows()
+
+    elif section == "Application Mac":
+        tel.onglet_application_mac()
+
+    elif section == "Se connecter":
         try:
             authenticator.login(
                 location="main",
@@ -339,7 +365,7 @@ def verifier_authentification():
         except Exception as e:
             st.error(f"Erreur de connexion : {e}")
 
-    with onglet_premier:
+    elif section == "Première connexion":
         st.caption(
             "Réservé aux emails autorisés par l'enseignant. "
             "Choisissez votre mot de passe une seule fois."
@@ -578,6 +604,7 @@ with st.sidebar:
 
     # ── Réglages ──
     st.header("⚙️ Réglages du réseau")
+    ag_aide.injecter_style_puces_sidebar()
 
     def _reglage(label, cle, titre, contenu, widget_fn):
         col_titre, col_i = st.columns([6, 1])

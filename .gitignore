@@ -3,3 +3,6 @@ auth_config.yaml
 __pycache__/
 .venv/
 venv/
+downloads/*.dmg
+downloads/*.zip
+downloads/*.exe
