@@ -232,8 +232,10 @@ def afficher_puce_aide(cle: str, titre: str, contenu: str) -> None:
 
 
 def afficher_puce_aide_reglage(cle: str, titre: str, contenu: str) -> None:
-    """Puce ℹ️ compacte à côté d'un réglage (barre latérale)."""
-    if not hasattr(st, "dialog"):
+    """Puce ℹ️ à côté d'un titre de réglage (barre latérale)."""
+    if hasattr(st, "popover"):
+        with st.popover("ℹ️", help="Explication"):
+            st.markdown(contenu)
         return
-    if st.button("ℹ️", key=f"aide_reg_{cle}", help="Explication"):
+    if hasattr(st, "dialog") and st.button("ℹ️", key=f"aide_reg_{cle}", help="Explication"):
         _ouvrir_popup(titre, contenu)

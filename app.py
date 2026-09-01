@@ -580,57 +580,85 @@ with st.sidebar:
     st.header("⚙️ Réglages du réseau")
 
     def _reglage(label, cle, titre, contenu, widget_fn):
-        col_w, col_i = st.columns([8, 1])
-        with col_w:
-            return widget_fn()
+        col_titre, col_i = st.columns([6, 1])
+        with col_titre:
+            st.markdown(f"**{label}**")
         with col_i:
-            st.markdown("<div style='margin-top:1.6rem'></div>", unsafe_allow_html=True)
             ag_aide.afficher_puce_aide_reglage(cle, titre, contenu)
+        return widget_fn()
 
     prereglage = _reglage(
         "Préréglage", "prereglage", "Préréglage", ag_aide.AIDE_PREREGLAGE,
-        lambda: st.selectbox("Préréglage", list(PREREGLAGES.keys()), index=1, key="prereglage"),
+        lambda: st.selectbox(
+            "Préréglage", list(PREREGLAGES.keys()), index=1,
+            key="prereglage", label_visibility="collapsed",
+        ),
     )
     p = PREREGLAGES[prereglage]
 
     couches = _reglage(
         "Couches cachées", "couches", "Couches cachées", ag_aide.AIDE_COUCHES,
-        lambda: st.number_input("Couches cachées", 1, 10, p['couches'], key="couches"),
+        lambda: st.number_input(
+            "Couches cachées", 1, 10, p['couches'],
+            key="couches", label_visibility="collapsed",
+        ),
     )
     neurones = _reglage(
         "Neurones par couche", "neurones", "Neurones par couche", ag_aide.AIDE_NEURONES,
-        lambda: st.number_input("Neurones par couche", 2, 128, p['neurones'], key="neurones"),
+        lambda: st.number_input(
+            "Neurones par couche", 2, 128, p['neurones'],
+            key="neurones", label_visibility="collapsed",
+        ),
     )
     activation = _reglage(
         "Activation", "activation", "Activation", ag_aide.AIDE_ACTIVATION,
-        lambda: st.selectbox("Activation", ['relu', 'sigmoid', 'tanh'], key="activation"),
+        lambda: st.selectbox(
+            "Activation", ['relu', 'sigmoid', 'tanh'],
+            key="activation", label_visibility="collapsed",
+        ),
     )
     optimiseur = _reglage(
         "Optimiseur", "optimiseur", "Optimiseur", ag_aide.AIDE_OPTIMISEUR,
-        lambda: st.selectbox("Optimiseur", ['adam', 'sgd'], key="optimiseur"),
+        lambda: st.selectbox(
+            "Optimiseur", ['adam', 'sgd'],
+            key="optimiseur", label_visibility="collapsed",
+        ),
     )
     lr = _reglage(
         "Taux d'apprentissage", "lr", "Taux d'apprentissage", ag_aide.AIDE_TAUX_APPRENTISSAGE,
         lambda: st.select_slider(
             "Taux d'apprentissage",
             options=[0.1, 0.05, 0.01, 0.005, 0.001, 0.0005, 0.0001],
-            value=p['lr'], key="lr"),
+            value=p['lr'], key="lr", label_visibility="collapsed",
+        ),
     )
     epoques = _reglage(
         "Époques", "epoques", "Époques", ag_aide.AIDE_EPOQUES,
-        lambda: st.number_input("Époques", 10, 2000, p['epoques'], step=50, key="epoques"),
+        lambda: st.number_input(
+            "Époques", 10, 2000, p['epoques'], step=50,
+            key="epoques", label_visibility="collapsed",
+        ),
     )
     taille_lot = _reglage(
         "Taille de lot", "lot", "Taille de lot", ag_aide.AIDE_TAILLE_LOT,
-        lambda: st.number_input("Taille de lot", 8, 256, p['lot'], step=8, key="lot"),
+        lambda: st.number_input(
+            "Taille de lot", 8, 256, p['lot'], step=8,
+            key="lot", label_visibility="collapsed",
+        ),
     )
     test_pct = _reglage(
         "% données de test", "test_pct", "% données de test", ag_aide.AIDE_DONNEES_TEST,
-        lambda: st.slider("% données de test", 0.05, 0.50, 0.20, 0.05, key="test_pct"),
+        lambda: st.slider(
+            "% données de test", 0.05, 0.50, 0.20, 0.05,
+            key="test_pct", label_visibility="collapsed",
+        ),
     )
     graine = _reglage(
         "Graine aléatoire", "graine", "Graine aléatoire", ag_aide.AIDE_GRAINE,
-        lambda: st.number_input("Graine aléatoire", value=42, key="graine"),
+        lambda: st.number_input(
+            "Graine aléatoire", value=42,
+            key="graine", label_visibility="collapsed",
+        ),
     )
 
     st.divider()
