@@ -508,16 +508,34 @@ def verifier_authentification():
 
     authenticator = stauth.Authenticate(str(AUTH_CONFIG_PATH))
 
-    menu_options = [
-        "Se connecter",
-        "Première connexion",
-    ]
-    if not ag.masquer_code():
-        menu_options.extend([
-            "Code source",
-            "Application Windows",
-            "Application Mac",
-        ])
+    # Relit le cookie sans afficher le formulaire, pour savoir
+    # si la personne est déjà connectée avant de dessiner le menu.
+    try:
+        authenticator.login(
+            location="unrendered",
+            captcha=False,
+            max_login_attempts=5,
+            key="Login",
+        )
+    except Exception as e:
+        st.error(f"Erreur de connexion : {e}")
+
+    deja_connecte = st.session_state.get("authentication_status") is True
+
+    menu_options = []
+    if not deja_connecte:
+        menu_options.extend(["Se connecter", "Première connexion"])
+        if not ag.masquer_code():
+            menu_options.extend([
+                "Code source",
+                "Application Windows",
+                "Application Mac",
+            ])
+    if not menu_options:
+        if deja_connecte:
+            return authenticator
+        st.stop()
+
     if st.session_state.get("menu_public") not in menu_options:
         st.session_state["menu_public"] = menu_options[0]
 
