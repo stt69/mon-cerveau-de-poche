@@ -855,11 +855,20 @@ with st.sidebar:
             ag_aide.afficher_puce_aide_reglage(cle, titre, contenu)
         return widget_fn()
 
+    def _appliquer_prereglage():
+        choix = PREREGLAGES[st.session_state.prereglage]
+        st.session_state.couches = choix["couches"]
+        st.session_state.neurones = choix["neurones"]
+        st.session_state.lr = choix["lr"]
+        st.session_state.epoques = choix["epoques"]
+        st.session_state.lot = choix["lot"]
+
     prereglage = _reglage(
         "Préréglage", "prereglage", "Préréglage", ag_aide.AIDE_PREREGLAGE,
         lambda: st.selectbox(
             "Préréglage", list(PREREGLAGES.keys()), index=1,
             key="prereglage", label_visibility="collapsed",
+            on_change=_appliquer_prereglage,
         ),
     )
     p = PREREGLAGES[prereglage]
