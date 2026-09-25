@@ -8,6 +8,7 @@ import yaml
 
 CONFIG = Path(__file__).resolve().parent / "auth_config.yaml"
 EXAMPLE = Path(__file__).resolve().parent / "auth_config.yaml.example"
+SETTINGS = Path(__file__).resolve().parent / "app_settings.yaml"
 
 ADMIN_EMAILS = {"thomas@immotour.swiss"}
 
@@ -128,6 +129,29 @@ def reinitialiser(email: str) -> str:
         config["pre-authorized"]["emails"] = pre + [email]
     sauver(config)
     return f"Remis en première connexion : {email}"
+
+
+def _charger_reglages() -> dict:
+    if not SETTINGS.exists():
+        return {}
+    try:
+        with SETTINGS.open(encoding="utf-8") as f:
+            data = yaml.safe_load(f) or {}
+    except Exception:
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def masquer_code() -> bool:
+    """Vrai si le menu public doit cacher code source et téléchargements."""
+    return bool(_charger_reglages().get("masquer_code"))
+
+
+def definir_masquer_code(actif: bool) -> None:
+    data = _charger_reglages()
+    data["masquer_code"] = bool(actif)
+    with SETTINGS.open("w", encoding="utf-8") as f:
+        yaml.dump(data, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
 
 
 def est_admin(username: str | None = None, email: str | None = None) -> bool:

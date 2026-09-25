@@ -511,10 +511,16 @@ def verifier_authentification():
     menu_options = [
         "Se connecter",
         "Première connexion",
-        "Code source",
-        "Application Windows",
-        "Application Mac",
     ]
+    if not ag.masquer_code():
+        menu_options.extend([
+            "Code source",
+            "Application Windows",
+            "Application Mac",
+        ])
+    if st.session_state.get("menu_public") not in menu_options:
+        st.session_state["menu_public"] = menu_options[0]
+
     section = st.radio(
         "Menu",
         menu_options,
@@ -596,6 +602,20 @@ def verifier_authentification():
 def afficher_administration():
     """Panneau réservé à l'administrateur pour gérer les emails autorisés."""
     st.subheader("Administration des accès")
+
+    def _enregistrer_masquer_code():
+        ag.definir_masquer_code(bool(st.session_state.get("admin_masquer_code")))
+
+    st.checkbox(
+        "Masquer code",
+        value=ag.masquer_code(),
+        key="admin_masquer_code",
+        on_change=_enregistrer_masquer_code,
+        help=(
+            "Cache « Code source », « Application Windows » et "
+            "« Application Mac » dans le menu du haut."
+        ),
+    )
     st.caption(
         "Autorisez des emails : les étudiants créeront leur mot de passe "
         "à la première connexion."
