@@ -457,6 +457,8 @@ def dossier_exemples() -> Path | None:
 
 def categoriser_exemple(nom: str) -> str:
     stem = Path(nom).stem
+    if stem.startswith("synchrotech_"):
+        return "Immobilier"
     if stem.startswith("cas_"):
         parties = stem.split("_")
         if len(parties) >= 2:
@@ -464,6 +466,18 @@ def categoriser_exemple(nom: str) -> str:
     if stem.startswith("chapitre"):
         return "Chapitres (Partie I)"
     return "Autres exemples"
+
+
+def libelle_exemple(chemin: Path) -> str:
+    """Libellé du menu. Les cas Synchrotech gardent leur numéro d'exercice."""
+    stem = chemin.stem
+    if stem.startswith("synchrotech_"):
+        numero = stem.split("_")[1]
+        if exp.a_explication(chemin.name):
+            return f"{numero} — {exp.titre_pour(chemin.name)}"
+        reste = stem.split("_", 2)[-1].replace("_", " ")
+        return f"{numero} — {reste}"
+    return stem.replace("_", " ")
 
 
 def lister_exemples() -> dict[str, list[Path]]:
@@ -940,7 +954,7 @@ if source_donnees == "Exemples":
         categories = list(groupes.keys())
         categorie = st.selectbox("Thème", categories, key="exemple_categorie")
         fichiers = groupes[categorie]
-        labels = {p: p.stem.replace("_", " ") for p in fichiers}
+        labels = {p: libelle_exemple(p) for p in fichiers}
         choix = st.selectbox(
             "Fichier exemple",
             fichiers,

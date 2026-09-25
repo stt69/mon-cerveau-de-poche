@@ -350,5 +350,85 @@
   "cas_arithmetique_modulo.xlsx": {
     "fichier": "explications/cas_arithmetique_modulo.md",
     "titre": "Apprendre le modulo (reste)"
+  },
+  "synchrotech_11_prix_vente_appartement.xlsx": {
+    "fichier": "explications/synchrotech_11_prix_vente_appartement.md",
+    "titre": "Estimer le prix de vente d'un appartement"
+  },
+  "synchrotech_12_delai_vente.xlsx": {
+    "fichier": "explications/synchrotech_12_delai_vente.md",
+    "titre": "Prévoir le délai de vente"
+  },
+  "synchrotech_13_loyer_mensuel.xlsx": {
+    "fichier": "explications/synchrotech_13_loyer_mensuel.md",
+    "titre": "Estimer le loyer mensuel"
+  },
+  "synchrotech_14_cout_renovation_energie.xlsx": {
+    "fichier": "explications/synchrotech_14_cout_renovation_energie.md",
+    "titre": "Coût d'une rénovation énergétique"
+  },
+  "synchrotech_15_commission_agence.xlsx": {
+    "fichier": "explications/synchrotech_15_commission_agence.md",
+    "titre": "Commission d'agence"
+  },
+  "synchrotech_16_charges_annuelles.xlsx": {
+    "fichier": "explications/synchrotech_16_charges_annuelles.md",
+    "titre": "Charges annuelles décomposées"
+  },
+  "synchrotech_17_vente_rapide.xlsx": {
+    "fichier": "explications/synchrotech_17_vente_rapide.md",
+    "titre": "Vente rapide (moins de 90 jours)"
+  },
+  "synchrotech_18_risque_vacance.xlsx": {
+    "fichier": "explications/synchrotech_18_risque_vacance.md",
+    "titre": "Risque de vacance locative"
+  },
+  "synchrotech_19_prix_m2.xlsx": {
+    "fichier": "explications/synchrotech_19_prix_m2.md",
+    "titre": "Prix au mètre carré"
+  },
+  "synchrotech_20_frais_transaction.xlsx": {
+    "fichier": "explications/synchrotech_20_frais_transaction.md",
+    "titre": "Frais de transaction"
+  },
+  "synchrotech_21_visites_mensuelles.xlsx": {
+    "fichier": "explications/synchrotech_21_visites_mensuelles.md",
+    "titre": "Visites mensuelles du portefeuille"
+  },
+  "synchrotech_22_budget_marketing.xlsx": {
+    "fichier": "explications/synchrotech_22_budget_marketing.md",
+    "titre": "Budget marketing par poste"
+  },
+  "synchrotech_23_offre_acceptee.xlsx": {
+    "fichier": "explications/synchrotech_23_offre_acceptee.md",
+    "titre": "Acceptation d'une offre"
+  },
+  "synchrotech_24_rendement_locatif.xlsx": {
+    "fichier": "explications/synchrotech_24_rendement_locatif.md",
+    "titre": "Rendement locatif net"
+  },
+  "synchrotech_25_delai_mise_location.xlsx": {
+    "fichier": "explications/synchrotech_25_delai_mise_location.md",
+    "titre": "Délai de mise en location"
+  },
+  "synchrotech_26_surevaluation.xlsx": {
+    "fichier": "explications/synchrotech_26_surevaluation.md",
+    "titre": "Surévaluation au diagnostic"
+  },
+  "synchrotech_27_taxe_immobiliere.xlsx": {
+    "fichier": "explications/synchrotech_27_taxe_immobiliere.md",
+    "titre": "Taxe immobilière communale"
+  },
+  "synchrotech_28_transactions_mensuelles.xlsx": {
+    "fichier": "explications/synchrotech_28_transactions_mensuelles.md",
+    "titre": "Transactions mensuelles du marché local"
+  },
+  "synchrotech_29_budget_renovation_postes.xlsx": {
+    "fichier": "explications/synchrotech_29_budget_renovation_postes.md",
+    "titre": "Répartition d'un budget de rénovation"
+  },
+  "synchrotech_30_risque_impaye.xlsx": {
+    "fichier": "explications/synchrotech_30_risque_impaye.md",
+    "titre": "Risque d'impayé de loyer"
   }
 }
