@@ -334,6 +334,22 @@ def suggerer_prereglage(n_lignes):
     return 'Grand (2 000+)'
 
 
+def ecrire_champs_prereglage(nom: str) -> None:
+    """Met à jour les champs liés à un préréglage, avant leur widget."""
+    choix = PREREGLAGES[nom]
+    st.session_state.couches = choix["couches"]
+    st.session_state.neurones = choix["neurones"]
+    st.session_state.lr = choix["lr"]
+    st.session_state.epoques = choix["epoques"]
+    st.session_state.lot = choix["lot"]
+
+
+def ecrire_valeurs_prereglage(nom: str) -> None:
+    """Sélectionne un préréglage et ses champs, avant les widgets."""
+    st.session_state.prereglage = nom
+    ecrire_champs_prereglage(nom)
+
+
 def afficher_metriques_regression(mae_par_cible, r2_par_cible, colonnes_cible, prefixe=""):
     """Affiche MAE et R² par cible (régression ou réseau)."""
     cols_met = st.columns(min(4, len(colonnes_cible)))
@@ -856,36 +872,46 @@ with st.sidebar:
         return widget_fn()
 
     def _appliquer_prereglage():
-        choix = PREREGLAGES[st.session_state.prereglage]
-        st.session_state.couches = choix["couches"]
-        st.session_state.neurones = choix["neurones"]
-        st.session_state.lr = choix["lr"]
-        st.session_state.epoques = choix["epoques"]
-        st.session_state.lot = choix["lot"]
+        ecrire_champs_prereglage(st.session_state.prereglage)
+
+    en_attente = st.session_state.pop("_prereglage_a_appliquer", None)
+    if en_attente in PREREGLAGES:
+        ecrire_valeurs_prereglage(en_attente)
+
+    def _select_prereglage():
+        params = dict(
+            key="prereglage",
+            label_visibility="collapsed",
+            on_change=_appliquer_prereglage,
+        )
+        if "prereglage" not in st.session_state:
+            params["index"] = 1
+        return st.selectbox("Préréglage", list(PREREGLAGES.keys()), **params)
 
     prereglage = _reglage(
         "Préréglage", "prereglage", "Préréglage", ag_aide.AIDE_PREREGLAGE,
-        lambda: st.selectbox(
-            "Préréglage", list(PREREGLAGES.keys()), index=1,
-            key="prereglage", label_visibility="collapsed",
-            on_change=_appliquer_prereglage,
-        ),
+        _select_prereglage,
     )
     p = PREREGLAGES[prereglage]
 
+    def _nombre(label, cle, min_v, max_v, defaut, step=None):
+        params = dict(
+            min_value=min_v, max_value=max_v,
+            key=cle, label_visibility="collapsed",
+        )
+        if step is not None:
+            params["step"] = step
+        if cle not in st.session_state:
+            params["value"] = defaut
+        return st.number_input(label, **params)
+
     couches = _reglage(
         "Couches cachées", "couches", "Couches cachées", ag_aide.AIDE_COUCHES,
-        lambda: st.number_input(
-            "Couches cachées", 1, 10, p['couches'],
-            key="couches", label_visibility="collapsed",
-        ),
+        lambda: _nombre("Couches cachées", "couches", 1, 10, p["couches"]),
     )
     neurones = _reglage(
         "Neurones par couche", "neurones", "Neurones par couche", ag_aide.AIDE_NEURONES,
-        lambda: st.number_input(
-            "Neurones par couche", 2, 128, p['neurones'],
-            key="neurones", label_visibility="collapsed",
-        ),
+        lambda: _nombre("Neurones par couche", "neurones", 2, 128, p["neurones"]),
     )
     activation = _reglage(
         "Activation", "activation", "Activation", ag_aide.AIDE_ACTIVATION,
@@ -901,27 +927,26 @@ with st.sidebar:
             key="optimiseur", label_visibility="collapsed",
         ),
     )
+    def _select_lr():
+        params = dict(
+            options=[0.1, 0.05, 0.01, 0.005, 0.001, 0.0005, 0.0001],
+            key="lr", label_visibility="collapsed",
+        )
+        if "lr" not in st.session_state:
+            params["value"] = p["lr"]
+        return st.select_slider("Taux d'apprentissage", **params)
+
     lr = _reglage(
         "Taux d'apprentissage", "lr", "Taux d'apprentissage", ag_aide.AIDE_TAUX_APPRENTISSAGE,
-        lambda: st.select_slider(
-            "Taux d'apprentissage",
-            options=[0.1, 0.05, 0.01, 0.005, 0.001, 0.0005, 0.0001],
-            value=p['lr'], key="lr", label_visibility="collapsed",
-        ),
+        _select_lr,
     )
     epoques = _reglage(
         "Époques", "epoques", "Époques", ag_aide.AIDE_EPOQUES,
-        lambda: st.number_input(
-            "Époques", 10, 2000, p['epoques'], step=50,
-            key="epoques", label_visibility="collapsed",
-        ),
+        lambda: _nombre("Époques", "epoques", 10, 2000, p["epoques"], step=50),
     )
     taille_lot = _reglage(
         "Taille de lot", "lot", "Taille de lot", ag_aide.AIDE_TAILLE_LOT,
-        lambda: st.number_input(
-            "Taille de lot", 8, 256, p['lot'], step=8,
-            key="lot", label_visibility="collapsed",
-        ),
+        lambda: _nombre("Taille de lot", "lot", 8, 256, p["lot"], step=8),
     )
     test_pct = _reglage(
         "% données de test", "test_pct", "% données de test", ag_aide.AIDE_DONNEES_TEST,
@@ -1004,13 +1029,18 @@ else:
         st.caption(f"Fichier : `{fichier_excel.name}`")
 
 if df is not None:
+    # Au chargement d'un nouveau fichier, sélectionner le préréglage adapté.
+    suggestion = suggerer_prereglage(len(df))
+    if id_source and st.session_state.get("_prereglage_pour_source") != id_source:
+        st.session_state._prereglage_pour_source = id_source
+        st.session_state._prereglage_a_appliquer = suggestion
+        _rerun()
+
     st.subheader("Aperçu des données")
     st.dataframe(df.head(10), use_container_width=True)
     st.caption(f"{len(df)} lignes × {len(df.columns)} colonnes")
 
-    # Suggestion automatique de préréglage
-    suggestion = suggerer_prereglage(len(df))
-    if suggestion != st.session_state.get('prereglage'):
+    if suggestion != st.session_state.get("prereglage"):
         st.info(f"💡 Pour {len(df)} lignes, le préréglage **{suggestion}** est recommandé.")
 
     # Sélection des colonnes cibles
